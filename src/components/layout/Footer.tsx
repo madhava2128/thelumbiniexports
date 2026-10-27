@@ -29,8 +29,8 @@ export function Footer() {
               <Logo size="footer" href="/" className="mb-2" />
               <p className="text-sm text-ivory/75 max-w-md leading-relaxed mt-2">
                 Suppliers and global exporters of architectural-grade Indian
-                granite, marble, and basalt stone. Precision cutting and
-                polishing unit in Telangana, India.
+                granite. Precision cutting and polishing unit in Telangana,
+                India.
               </p>
             </div>
 
@@ -111,10 +111,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Natural Stone Collection (2 cols) */}
+          {/* Column 3: Natural Granite Collection (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
             <span className="type-label text-gold tracking-widest text-xs uppercase block border-b border-gold/20 pb-2">
-              Collection
+              Granite Collection
             </span>
             <ul className="space-y-2.5">
               {footerNav.collectionLinks.map((link) => (

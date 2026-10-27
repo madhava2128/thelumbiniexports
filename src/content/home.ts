@@ -2,9 +2,7 @@ import { type ImageSlotKey } from "./images";
 
 /**
  * Content for the Home Page (/) of The Lumbini Exports.
- *
- * All headlines, descriptions, and CTA labels are defined here for easy editing.
- * Factual claims strictly reflect confirmed details (Telangana facility, est. 2023).
+ * Granite only. Factual claims strictly reflect confirmed details (Telangana facility, est. 2023).
  */
 
 export interface HomeHeroContent {
@@ -28,8 +26,6 @@ export interface HomePillarItem {
   title: string;
   description: string;
   iconName: "scissors" | "layers" | "package-check";
-  // Flag unconfirmed details
-  todoClientNotice?: string;
 }
 
 export interface HomeAboutTeaser {
@@ -87,25 +83,9 @@ export interface HomePageContent {
 export const homeContent: HomePageContent = {
   // 1. Hero Section
   hero: {
-    // Default:
-    headline: "Granite, marble and basalt from Hanamkonda.",
+    headline: "Granite cut and polished in Hanamkonda.",
     supportingLine:
-      "We cut, polish and supply natural stone to builders, distributors and importers.",
-
-    /*
-     * Alternative Copy Options:
-     *
-     * Option B:
-     * headline: "Stone, cut and finished in Telangana.",
-     * supportingLine:
-     *   "Granite, marble and basalt for projects at home and abroad. Tell us what you need and we will quote.",
-     *
-     * Option C:
-     * headline: "Natural stone for serious projects.",
-     * supportingLine:
-     *   "A cutting and polishing unit in Elkathurthy, supplying granite, marble and basalt.",
-     */
-
+      "We cut, polish and supply granite to builders, distributors and importers.",
     primaryCta: {
       label: "Request a Quote",
       href: "/get-quote",
@@ -117,7 +97,7 @@ export const homeContent: HomePageContent = {
     facts: [
       "Est. 2023",
       "Hanamkonda, Telangana",
-      "Granite · Marble · Basalt",
+      "Granite",
     ],
     backgroundImageKey: "hero_primary",
   },
@@ -125,29 +105,27 @@ export const homeContent: HomePageContent = {
   // 2. Three Value Pillars
   pillars: {
     eyebrow: "Core Capabilities",
-    heading: "Precision Natural Stone Processing",
+    heading: "Precision Natural Granite Processing",
     items: [
       {
         id: "cutting-polishing",
         title: "In-house cutting and polishing",
         description:
-          "Multi-blade block dressing and continuous surface polishing performed on-site at our Elkathurthy facility.",
+          "Multi-blade block sawing and continuous surface polishing performed on-site at our Elkathurthy facility.",
         iconName: "scissors",
       },
       {
         id: "stone-varieties",
-        title: "Granite, marble and basalt",
+        title: "A focused granite range",
         description:
-          "Quarried regional stone including Imperial Pink, Tan Brown, crystalline marble, and heavy architectural basalt blocks.",
+          "Regional natural granite processed into polished slabs, calibrated tiles, and textured anti-skid architectural finishes.",
         iconName: "layers",
       },
       {
         id: "prepared-shipment",
         title: "Prepared for shipment",
         description:
-          "Dimensioned stone securely bundled and crated for road transport and containerized sea freight.",
-        // TODO(client): confirm exact packaging specifications (fumigated wooden crates, steel bundles, or A-frames)
-        todoClientNotice: "TODO(client): confirm packaging and crating standard",
+          "Dimensioned stone securely bundled and crated in sturdy wooden packaging for road transport and containerized sea freight.",
         iconName: "package-check",
       },
     ],
@@ -158,7 +136,7 @@ export const homeContent: HomePageContent = {
     eyebrow: "Quarried & Fabricated",
     heading: "Core Stone Selection",
     description:
-      "Architectural natural stones cut to commercial slab, tile, and raw block specifications.",
+      "Architectural granite cut to commercial slab, tile, and raw block specifications.",
     ctaLabel: "View Full Collection",
     ctaHref: "/collection",
   },
@@ -166,9 +144,9 @@ export const homeContent: HomePageContent = {
   // 4. About Teaser
   aboutTeaser: {
     eyebrow: "About Our Unit",
-    title: "Established Stone Cutting & Polishing in Hanamkonda",
+    title: "Established Granite Cutting & Polishing in Hanamkonda",
     description: [
-      "The Lumbini Exports was established in 2023 with a focused mission: to supply natural building stone directly from Telangana to domestic builders and international stone importers.",
+      "The Lumbini Exports was established in 2023 with a focused mission: to supply natural building granite directly from Telangana to domestic builders and international stone importers.",
       "Our processing unit is located in Elkathurthy Mandal, Hanamkonda District, positioning our operations near prime South Indian granite belts.",
     ],
     ctaLabel: "Learn More About Us",
@@ -187,27 +165,27 @@ export const homeContent: HomePageContent = {
         id: "machines",
         title: "Machines",
         oneLiner:
-          "Gangsaw block cutting and multi-head line polishing machinery for uniform thickness and finish.",
+          "Multi-cutter block sawing and 20-head continuous line polishing machinery for uniform thickness and finish.",
         href: "/infrastructure#machines",
-        imageKey: "infra_gangsaw_block_cutter",
+        imageKey: "infra_multi_cutter",
         stepNumber: "01",
       },
       {
         id: "facilities",
         title: "Operations & Facilities",
         oneLiner:
-          "Expansive raw block stockyards and dedicated finishing bays at our Elkathurthy unit.",
+          "Expansive raw block stockyards, covered finishing bays, and rooftop solar installation at our Elkathurthy unit.",
         href: "/infrastructure#facilities",
-        imageKey: "infra_polishing_line",
+        imageKey: "infra_processing_bay",
         stepNumber: "02",
       },
       {
         id: "delivery",
         title: "Delivery",
         oneLiner:
-          "Seaworthy crating and container stuffing coordinated for domestic and overseas delivery.",
+          "Seaworthy wooden crating and container stuffing coordinated for domestic and overseas delivery.",
         href: "/infrastructure#delivery",
-        imageKey: "infra_export_packing",
+        imageKey: "infra_delivery_packaging",
         stepNumber: "03",
       },
     ],

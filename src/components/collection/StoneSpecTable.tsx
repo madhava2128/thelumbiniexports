@@ -8,7 +8,6 @@ export interface StoneSpecTableProps {
 interface SpecRow {
   label: string;
   value: string | undefined;
-  isClientTodo?: boolean;
 }
 
 export function StoneSpecTable({ stone }: StoneSpecTableProps) {
@@ -16,48 +15,58 @@ export function StoneSpecTable({ stone }: StoneSpecTableProps) {
 
   const rawRows: SpecRow[] = [
     {
-      label: "Stone Classification",
-      value: stone.type,
+      label: "Material",
+      value: "Natural Granite",
     },
     {
-      label: "Colour Family",
+      label: "Category",
+      value: stone.category,
+    },
+    {
+      label: "Colour / Tone",
       value: specs.primaryColor,
     },
     {
-      label: "Quarry Source Region",
-      value: specs.quarryOrigin,
-      isClientTodo: specs.quarryOrigin?.includes("TODO"),
+      label: "Surface Finish",
+      value: specs.surfaceFinish,
     },
     {
       label: "Available Forms",
-      value: specs.slabSizesAvailable,
+      value: specs.availableForms,
     },
     {
-      label: "Surface Finishes",
-      value: specs.finishOptions && specs.finishOptions.length > 0 ? specs.finishOptions.join(", ") : undefined,
+      label: "Finish Options",
+      value:
+        specs.finishOptions && specs.finishOptions.length > 0
+          ? specs.finishOptions.join(", ")
+          : undefined,
     },
     {
       label: "Typical Applications",
-      value: specs.recommendedUses && specs.recommendedUses.length > 0 ? specs.recommendedUses.join(", ") : undefined,
+      value:
+        specs.recommendedUses && specs.recommendedUses.length > 0
+          ? specs.recommendedUses.join(", ")
+          : undefined,
     },
     {
       label: "Standard Thicknesses",
-      value: specs.standardThickness && specs.standardThickness.length > 0 ? specs.standardThickness.join(", ") : undefined,
-    },
-    {
-      label: "Water Absorption",
-      value: specs.waterAbsorption,
-      isClientTodo: specs.waterAbsorption?.includes("TODO"),
-    },
-    {
-      label: "Compressive Strength",
-      value: specs.compressiveStrength,
-      isClientTodo: specs.compressiveStrength?.includes("TODO"),
+      value:
+        specs.standardThickness && specs.standardThickness.length > 0
+          ? specs.standardThickness.join(", ")
+          : undefined,
     },
   ];
 
-  // Hide any row that has no value rather than showing "N/A"
-  const activeRows = rawRows.filter((row) => row.value && row.value.trim().length > 0);
+  // Strictly omit any row without a confirmed value
+  const activeRows = rawRows.filter(
+    (row) =>
+      row.value &&
+      row.value.trim().length > 0 &&
+      !row.value.toLowerCase().includes("pending") &&
+      !row.value.toLowerCase().includes("tbc") &&
+      !row.value.toLowerCase().includes("todo") &&
+      !row.value.toLowerCase().includes("n/a")
+  );
 
   return (
     <div className="overflow-hidden rounded-xs border border-stone/20 bg-ivory-surface shadow-xs">
@@ -71,30 +80,19 @@ export function StoneSpecTable({ stone }: StoneSpecTableProps) {
       </div>
 
       <div className="divide-y divide-stone/15">
-        {activeRows.map((row) => {
-          // Clean display value if internal comment is present
-          const displayValue = row.value?.split("//")[0]?.trim() || row.value;
-
-          return (
-            <div
-              key={row.label}
-              className="grid grid-cols-1 sm:grid-cols-12 py-3.5 px-6 gap-2 text-sm"
-            >
-              <div className="sm:col-span-4 font-sans font-medium text-stone-grey-text">
-                {row.label}
-              </div>
-              <div className="sm:col-span-8 font-sans text-obsidian">
-                <span>{displayValue}</span>
-                {row.isClientTodo && (
-                  <span className="ml-2 inline-block text-[10px] font-mono text-stone italic">
-                    {/* TODO(client): confirm specification */}
-                    (Client confirmation pending)
-                  </span>
-                )}
-              </div>
+        {activeRows.map((row) => (
+          <div
+            key={row.label}
+            className="grid grid-cols-1 sm:grid-cols-12 py-3.5 px-6 gap-2 text-sm"
+          >
+            <div className="sm:col-span-4 font-sans font-medium text-stone-grey-text">
+              {row.label}
             </div>
-          );
-        })}
+            <div className="sm:col-span-8 font-sans text-obsidian font-normal">
+              {row.value}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

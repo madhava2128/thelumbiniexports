@@ -31,7 +31,7 @@ function cleanupRateLimits() {
 // Helpers to get human-readable labels for email formatting
 function getStoneLabel(slug: string): string {
   const found = stones.find((s) => s.slug === slug);
-  return found ? `${found.name} (${found.type})` : slug;
+  return found ? found.name : slug;
 }
 
 function getUnitLabel(unitId: string): string {
@@ -181,7 +181,7 @@ export async function POST(req: NextRequest) {
 
     const plainText = `
 ============================================================
-NEW NATURAL STONE QUOTE REQUEST - THE LUMBINI EXPORTS
+NEW GRANITE QUOTE REQUEST - THE LUMBINI EXPORTS
 ============================================================
 
 CLIENT & CONTACT DETAILS:
@@ -192,9 +192,10 @@ Email:            ${data.email}
 Phone / WhatsApp: ${data.phone || "Not provided"}
 Country:          ${data.country}
 
-STONE SPECIFICATIONS:
+GRANITE SPECIFICATIONS:
 ------------------------------------------------------------
-Stone Variety:    ${stoneDisplay}
+Granite Variety:  ${stoneDisplay}
+Surface Finish:   ${data.finish || "Standard / As specified"}
 Quantity:         ${data.quantity} ${unitDisplay}
 Thickness:        ${thicknessDisplay}
 Cut / Format:     ${sizeDisplay}${data.customSize ? `\nCustom Size Notes: ${data.customSize}` : ""}
@@ -216,7 +217,7 @@ Sender IP:        ${ip}
 <html>
 <head>
   <meta charset="utf-8">
-  <title>New Quote Request</title>
+  <title>New Granite Quote Request</title>
 </head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f7f6f2; color: #252827; margin: 0; padding: 24px;">
   <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 640px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e2ddd5; border-radius: 4px; overflow: hidden;">
@@ -224,7 +225,7 @@ Sender IP:        ${ip}
     <tr>
       <td style="background-color: #252827; padding: 24px; text-align: left; border-bottom: 2px solid #b89555;">
         <span style="color: #b89555; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; display: block;">The Lumbini Exports &bull; RFQ Inquiry</span>
-        <h1 style="color: #f3f0e8; font-size: 20px; margin: 4px 0 0 0; font-weight: 500;">New Stone Quote Request</h1>
+        <h1 style="color: #f3f0e8; font-size: 20px; margin: 4px 0 0 0; font-weight: 500;">New Granite Quote Request</h1>
       </td>
     </tr>
 
@@ -257,12 +258,20 @@ Sender IP:        ${ip}
         </table>
 
         <!-- Specs Block -->
-        <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #53645a; margin: 0 0 12px 0; border-bottom: 1px solid #e2ddd5; padding-bottom: 6px;">2. Stone Requirements</h2>
+        <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #53645a; margin: 0 0 12px 0; border-bottom: 1px solid #e2ddd5; padding-bottom: 6px;">2. Granite Requirements</h2>
         <table width="100%" style="font-size: 14px; margin-bottom: 24px;">
           <tr>
-            <td width="35%" style="color: #777c7d; padding: 4px 0;"><strong>Stone Variety:</strong></td>
+            <td width="35%" style="color: #777c7d; padding: 4px 0;"><strong>Granite Variety:</strong></td>
             <td style="color: #252827; padding: 4px 0; font-weight: 600;">${stoneDisplay}</td>
           </tr>
+          ${
+            data.finish
+              ? `<tr>
+            <td style="color: #777c7d; padding: 4px 0;"><strong>Surface Finish:</strong></td>
+            <td style="color: #252827; padding: 4px 0;">${data.finish}</td>
+          </tr>`
+              : ""
+          }
           <tr>
             <td style="color: #777c7d; padding: 4px 0;"><strong>Quantity:</strong></td>
             <td style="color: #252827; padding: 4px 0;">${data.quantity} ${unitDisplay}</td>

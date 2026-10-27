@@ -108,16 +108,6 @@ export function HomePillars() {
                   {item.description}
                 </p>
               </div>
-
-              {/* TODO(client) internal flag comment for Pillar 3 */}
-              {item.todoClientNotice && (
-                <div className="mt-4 pt-3 border-t border-stone/15">
-                  <span className="text-[11px] font-mono text-stone tracking-wide italic">
-                    {/* TODO(client): confirm packaging specifications and crate standards */}
-                    Packaging specification pending client confirmation
-                  </span>
-                </div>
-              )}
             </div>
           ))}
         </div>

@@ -3,7 +3,14 @@
 ## Client
 - **Company Name**: The Lumbini Exports
 - **Established**: 2023
-- **Business**: A granite and stone cutting and polishing unit that supplies and exports natural building stone: granite (including Imperial Pink and Tan Brown), marble, and basalt stone/blocks.
+- **Business**: A granite cutting and polishing unit that supplies and exports natural granite only.
+- **Granite Range (Six Items)**:
+  1. Tan Brown (Colour)
+  2. Royal Blue (Colour)
+  3. Safari Blue (Colour)
+  4. Honey Blue (Colour)
+  5. Lapotra (Finish): an anti-skid granite surface used where grip matters.
+  6. Flaming (Finish): granite whose upper surface is flame-torched.
 - **Physical Unit**: SyNo 882 B2/2/1/2 882/B1/1, Elkathurthy Mandal, Hanamkonda, Telangana 505476, India. (Maps: https://maps.app.goo.gl/ctrEZc4ZJCZcuquVA)
 - **Registered Office**: H.No. 2-8-14/301, Waddepally, Hanamkonda, Telangana, India.
 - **Email**: thelumbiniexports@gmail.com

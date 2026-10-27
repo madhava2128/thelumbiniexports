@@ -40,7 +40,14 @@ export const quoteSchema = z
     stone: z
       .string()
       .trim()
-      .min(1, "Please select a stone type from our collection"),
+      .min(1, "Please select a granite variety from our collection"),
+
+    finish: z
+      .string()
+      .trim()
+      .max(60, "Finish description is too long")
+      .optional()
+      .or(z.literal("")),
 
     quantity: z
       .string()

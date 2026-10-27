@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
 import { type StoneItem } from "@/content/stones";
 import {
+  finishOptions,
   quantityUnits,
   thicknessOptions,
   sizeChoices,
@@ -18,7 +19,16 @@ export interface StoneQuotePanelProps {
 export function StoneQuotePanel({ stone }: StoneQuotePanelProps) {
   const router = useRouter();
 
+  // If stone is Lapotra or Flaming, finish is fixed
+  const isFixedFinish = stone.category === "Finish";
+  const defaultFinish = isFixedFinish
+    ? stone.slug === "lapotra"
+      ? "Lapotra"
+      : "Flamed"
+    : finishOptions[0]?.label || "Polished";
+
   // Form states initialized with sensible defaults from quote-options.ts
+  const [finish, setFinish] = useState<string>(defaultFinish);
   const [quantity, setQuantity] = useState<string>("");
   const [unit, setUnit] = useState<string>(quantityUnits[0]?.id || "sq_ft");
   const [thickness, setThickness] = useState<string>(thicknessOptions[1]?.id || "20mm");
@@ -59,6 +69,7 @@ export function StoneQuotePanel({ stone }: StoneQuotePanelProps) {
     const params = new URLSearchParams({
       stone: stone.slug,
       stoneName: stone.name,
+      finish: isFixedFinish ? defaultFinish : finish,
       quantity: quantity.trim(),
       unit,
       thickness,
@@ -91,7 +102,31 @@ export function StoneQuotePanel({ stone }: StoneQuotePanelProps) {
 
       {/* Interactive Form */}
       <form onSubmit={handleSubmit} className="p-6 space-y-5" noValidate>
-        {/* 1. Quantity & Unit Select */}
+        {/* 1. Finish Select (Shown ONLY for Colour stones) */}
+        {!isFixedFinish && (
+          <div>
+            <label
+              htmlFor="quote-finish"
+              className="block text-xs font-sans font-semibold uppercase tracking-wider text-obsidian mb-1.5"
+            >
+              Surface Finish
+            </label>
+            <select
+              id="quote-finish"
+              value={finish}
+              onChange={(e) => setFinish(e.target.value)}
+              className="w-full rounded-xs border border-stone/30 bg-white px-3.5 py-2.5 text-sm text-obsidian focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
+            >
+              {finishOptions.map((opt) => (
+                <option key={opt.id} value={opt.label}>
+                  {opt.label} &ndash; {opt.description}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        {/* 2. Quantity & Unit Select */}
         <div>
           <label
             htmlFor="quote-quantity"
@@ -140,7 +175,7 @@ export function StoneQuotePanel({ stone }: StoneQuotePanelProps) {
           )}
         </div>
 
-        {/* 2. Thickness Select */}
+        {/* 3. Thickness Select */}
         <div>
           <label
             htmlFor="quote-thickness"
@@ -162,7 +197,7 @@ export function StoneQuotePanel({ stone }: StoneQuotePanelProps) {
           </select>
         </div>
 
-        {/* 3. Size / Cut Format Select */}
+        {/* 4. Size / Cut Format Select */}
         <div>
           <label
             htmlFor="quote-size"
@@ -217,7 +252,7 @@ export function StoneQuotePanel({ stone }: StoneQuotePanelProps) {
           )}
         </div>
 
-        {/* 4. Delivery Select & Destination Port / Country */}
+        {/* 5. Delivery Select & Destination Port / Country */}
         <div>
           <label
             htmlFor="quote-delivery"

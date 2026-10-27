@@ -121,11 +121,11 @@ export function HomeHero() {
             id="hero-heading"
             className="hero-headline-clamp animate-hero-headline type-hero font-normal text-ivory leading-[1.08] sm:leading-[1.1] tracking-tight max-w-[16ch] sm:max-w-[28ch] lg:max-w-[22ch]"
           >
-            {hero.headline === "Granite, marble and basalt from Hanamkonda." ? (
+            {hero.headline === "Granite cut and polished in Hanamkonda." ? (
               <>
-                Granite, marble and&nbsp;basalt{" "}
+                Granite cut and polished{" "}
                 <br className="hidden sm:inline" />
-                from&nbsp;Hanamkonda.
+                in&nbsp;Hanamkonda.
               </>
             ) : (
               hero.headline

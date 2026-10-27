@@ -20,10 +20,10 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: {
     template: "%s | The Lumbini Exports",
-    default: "The Lumbini Exports | Natural Stone & Granite Exporters",
+    default: "The Lumbini Exports | Indian Granite Cutters & Exporters",
   },
   description:
-    "Suppliers and exporters of premium natural stone: Imperial Pink Granite, Tan Brown Granite, Marble, and Basalt blocks. Cutting and polishing unit in Telangana, India. Established 2023.",
+    "Suppliers and exporters of natural Indian granite. Cutting and polishing unit in Telangana, India. Established 2023.",
   icons: {
     icon: [
       { url: "/brand/favicon.png", type: "image/png" },

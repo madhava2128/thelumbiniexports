@@ -42,21 +42,22 @@ export interface SiteConfig {
 
 const rawPhone = process.env.NEXT_PUBLIC_PHONE?.trim();
 const rawWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP?.trim();
+const isValidPhone = (val?: string) => Boolean(val && val.length > 5 && !val.includes("["));
 
 export const siteConfig: SiteConfig = {
   name: "The Lumbini Exports",
   legalName: "The Lumbini Exports",
-  tagline: "Natural Building Stone Exporters & Fabricators",
+  tagline: "Natural Granite Exporters & Processors",
   description:
-    "Precision cutting, polishing, and global export of architectural-grade Indian granite, marble, and basalt stone.",
+    "Precision cutting, polishing, and global export of architectural-grade Indian granite.",
   establishedYear: 2023,
   contactPerson: "Kommaraju Srinadh",
   email: "thelumbiniexports@gmail.com",
 
   // Primary & secondary contact numbers
-  phone: rawPhone && !rawPhone.includes("[PHONE NUMBER]") ? rawPhone : "+91 99082 97199",
+  phone: isValidPhone(rawPhone) ? rawPhone : "+91 99082 97199",
   secondaryPhone: "+91 70326 50171",
-  whatsApp: rawWhatsApp && !rawWhatsApp.includes("[WHATSAPP NUMBER]") ? rawWhatsApp : "+91 99082 97199",
+  whatsApp: isValidPhone(rawWhatsApp) ? rawWhatsApp : "+91 99082 97199",
 
   // Official Goods and Services Tax Identification Number (India)
   gstNumber: "36AASFT5150GIZV",

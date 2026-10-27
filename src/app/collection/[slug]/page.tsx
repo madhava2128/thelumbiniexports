@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 import {
   Container,
   Section,
@@ -35,16 +34,16 @@ export async function generateMetadata({
   const stone = getStoneBySlug(slug);
 
   if (!stone) {
-    return { title: "Stone Not Found" };
+    notFound();
   }
 
   return {
-    title: `${stone.name} (${stone.type}) | The Lumbini Exports`,
+    title: `${stone.name} | The Lumbini Exports`,
     description: stone.shortDescription,
   };
 }
 
-async function StoneDetailContent({ params }: StoneDetailPageProps) {
+export default async function StoneDetailPage({ params }: StoneDetailPageProps) {
   const { slug } = await params;
   const stone = getStoneBySlug(slug);
 
@@ -95,11 +94,11 @@ async function StoneDetailContent({ params }: StoneDetailPageProps) {
               <div className="space-y-2">
                 <div className="flex items-center gap-2.5">
                   <span className="type-label text-sage text-xs font-semibold uppercase tracking-wider">
-                    {stone.type}
+                    {stone.category}
                   </span>
                   <span className="text-stone/60 text-xs" aria-hidden="true">&bull;</span>
                   <span className="text-xs font-mono text-stone-grey-text uppercase">
-                    Telangana Unit
+                    Natural Granite
                   </span>
                 </div>
 
@@ -144,14 +143,14 @@ async function StoneDetailContent({ params }: StoneDetailPageProps) {
             <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
               <StoneQuotePanel stone={stone} />
 
-              {/* Additional In-house Processing Highlights */}
+              {/* In-house Processing Highlights */}
               <div className="p-6 rounded-xs bg-ivory-surface border border-stone/20 shadow-xs space-y-3 text-xs text-stone-grey-text">
                 <span className="type-label text-sage text-[11px] font-semibold block uppercase tracking-wider">
                   Processing &amp; Export Standard
                 </span>
                 <ul className="space-y-2 list-disc list-inside leading-relaxed">
-                  <li>Direct quarry intake and gang-saw slab calibration in Elkathurthy</li>
-                  <li>Custom dimensional cutting to architectural schedules</li>
+                  <li>Direct raw block intake and gang-saw slab calibration in Elkathurthy</li>
+                  <li>Custom dimensional cutting to architectural project schedules</li>
                   <li>Export packaging with protective fumigated wooden crating</li>
                 </ul>
               </div>
@@ -169,7 +168,7 @@ async function StoneDetailContent({ params }: StoneDetailPageProps) {
                 More Varieties
               </Eyebrow>
               <Heading variant="section" as="h2" className="text-obsidian mt-1">
-                Other Natural Stones
+                Other Granite Varieties
               </Heading>
             </div>
             <Link
@@ -181,7 +180,7 @@ async function StoneDetailContent({ params }: StoneDetailPageProps) {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
             {otherStones.map((item) => (
               <Link
                 key={item.slug}
@@ -197,7 +196,7 @@ async function StoneDetailContent({ params }: StoneDetailPageProps) {
                   </div>
                   <div className="p-5 space-y-2">
                     <span className="type-label text-[10px] text-sage font-semibold uppercase">
-                      {item.type}
+                      {item.category}
                     </span>
                     <p className="font-sans font-semibold text-obsidian group-hover:text-gold-hover transition-colors text-base line-clamp-1">
                       {item.name}
@@ -209,7 +208,7 @@ async function StoneDetailContent({ params }: StoneDetailPageProps) {
                 </div>
 
                 <div className="px-5 pb-5 pt-2 flex items-center justify-between border-t border-stone/10 text-xs text-obsidian group-hover:text-gold transition-colors font-medium">
-                  <span className="uppercase tracking-wider text-[11px]">Configure Quote</span>
+                  <span className="uppercase tracking-wider text-[11px]">View Details</span>
                   <span className="transform group-hover:translate-x-1 transition-transform duration-200 text-gold" aria-hidden="true">
                     &rarr;
                   </span>
@@ -239,7 +238,7 @@ async function StoneDetailContent({ params }: StoneDetailPageProps) {
               Ready to Discuss Specifications for {stone.name}?
             </Heading>
             <p className="type-body text-ivory/80 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-              Our engineering team reviews project drawings, quantities, and delivery schedules to issue formal wholesale quotations.
+              Our team reviews project cutting schedules, quantities, and delivery terms to issue formal itemized quotations.
             </p>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
@@ -251,37 +250,12 @@ async function StoneDetailContent({ params }: StoneDetailPageProps) {
                 Request a Quote for {stone.name}
               </Button>
               <Button href="/collection" variant="goldOutline" size="lg" className="w-full sm:w-auto px-8 py-4">
-                Back to All Stones
+                View Granite Collection
               </Button>
             </div>
           </div>
         </Container>
       </Section>
     </div>
-  );
-}
-
-function StoneDetailFallback() {
-  return (
-    <Section background="ivory" spacing="default" className="pt-8 animate-pulse">
-      <Container>
-        <div className="h-6 w-48 bg-stone/20 rounded-xs mb-8" />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="h-12 w-3/4 bg-stone/20 rounded-xs" />
-            <div className="aspect-[3/2] bg-stone/20 rounded-xs" />
-          </div>
-          <div className="lg:col-span-5 h-[500px] bg-stone/15 rounded-xs" />
-        </div>
-      </Container>
-    </Section>
-  );
-}
-
-export default function StoneDetailPage({ params }: StoneDetailPageProps) {
-  return (
-    <Suspense fallback={<StoneDetailFallback />}>
-      <StoneDetailContent params={params} />
-    </Suspense>
   );
 }

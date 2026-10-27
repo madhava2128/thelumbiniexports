@@ -2,8 +2,7 @@ import { type ImageSlotKey } from "./images";
 
 /**
  * Content for the Company Page (/company) of The Lumbini Exports.
- *
- * All text is strictly factual based on verified client details:
+ * Strictly factual based on verified client details:
  * established 2023, unit in Elkathurthy Mandal, registered office in Hanamkonda.
  */
 
@@ -31,7 +30,6 @@ export interface CompanyApproachItem {
   id: string;
   title: string;
   description: string;
-  // TODO(client): confirm approach statement wording
 }
 
 export interface CompanyPageContent {
@@ -42,6 +40,10 @@ export interface CompanyPageContent {
     heading: string;
     description: string;
     items: WhatWeDoItem[];
+  };
+  solarFeature: {
+    imageKey: ImageSlotKey;
+    caption: string;
   };
   ourStones: {
     eyebrow: string;
@@ -81,39 +83,39 @@ export const companyContent: CompanyPageContent = {
     badge: "About Us",
     title: "About The Lumbini Exports",
     intro:
-      "A dedicated natural stone cutting and polishing unit based in Elkathurthy, Hanamkonda District, Telangana. Established in 2023.",
+      "A dedicated granite cutting and polishing unit based in Elkathurthy, Hanamkonda District, Telangana. Established in 2023.",
   },
 
-  // 2. Our Story (strictly 2 paragraphs maximum, factual, no exaggeration)
+  // 2. Our Story (strictly factual, 2 paragraphs)
   story: {
     eyebrow: "Our Background",
-    heading: "From Quarry Source to Finished Architectural Stone",
+    heading: "From Quarry Source to Finished Architectural Granite",
     paragraphs: [
-      "The Lumbini Exports was established in 2023 as a natural stone cutting and polishing unit located at Elkathurthy Village and Mandal in the Hanamkonda District of Telangana, India. Our operations were founded to supply high-grade building stone directly to builders, commercial developers, stone distributors, and overseas importers.",
-      "Operating from our dedicated facility, we process raw granite blocks quarried across South Indian stone belts alongside select varieties of marble and basalt. With gang-saw block slicing, precision dimensional sizing, and surface polishing handled at our unit, we offer reliable stone supply tailored to architectural project specifications.",
+      "The Lumbini Exports was established in 2023 as a granite cutting and polishing unit located at Elkathurthy Village and Mandal in the Hanamkonda District of Telangana, India. Our operations supply building granite directly to builders, commercial developers, stone distributors, and overseas importers.",
+      "Operating from our dedicated facility, we process raw granite blocks quarried across South Indian stone belts. With multi-blade block sawing, precision dimensional sizing, and surface polishing handled at our unit, we offer reliable granite supply tailored to architectural project specifications.",
     ],
     imageKey: "company_unit_exterior",
   },
 
-  // 3. What We Do (clean three-column list)
+  // 3. What We Do (three-column list)
   whatWeDo: {
     eyebrow: "Operations",
     heading: "What We Do",
     description:
-      "Integrated natural stone processing from raw block intake to shipment-ready materials.",
+      "Integrated granite processing from raw block intake to shipment-ready materials.",
     items: [
       {
         id: "cutting-dimensioning",
         title: "Block Cutting & Dimensioning",
         description:
-          "Slicing heavy raw granite and stone blocks into calibrated slabs and customized cut-to-size dimensions using multi-blade gang saws and bridge cutters.",
+          "Slicing heavy raw granite blocks into calibrated slabs and customized cut-to-size dimensions using multi-blade gang saws and bridge cutters.",
         stepNumber: "01",
       },
       {
         id: "polishing-finishing",
         title: "Polishing & Surface Finishing",
         description:
-          "Applying specialized surface treatments—from mirror-gloss polishing to honed, flamed, and textured architectural finishes across granite, marble, and basalt.",
+          "Applying specialized surface treatments—from mirror-gloss polishing to flamed and textured Lapotra anti-skid finishes across our granite range.",
         stepNumber: "02",
       },
       {
@@ -126,16 +128,21 @@ export const companyContent: CompanyPageContent = {
     ],
   },
 
-  // 4. Our Stones
-  ourStones: {
-    eyebrow: "Core Materials",
-    heading: "Our Natural Stone Varieties",
-    description:
-      "Four core architectural stones processed at our Elkathurthy facility:",
+  // Small tidy rooftop solar visual on Company page
+  solarFeature: {
+    imageKey: "company_solar",
+    caption: "Rooftop solar at our unit in Elkathurthy.",
   },
 
-  // 5. Our Approach (general commitments, no unprovable numbers or claims)
-  // TODO(client): confirm wording of operating approach commitments
+  // 4. Our Stones
+  ourStones: {
+    eyebrow: "Core Range",
+    heading: "Our Granite Range",
+    description:
+      "Our focused selection of natural granite colours and specialised anti-skid finishes processed at our Elkathurthy facility:",
+  },
+
+  // 5. Our Approach
   approach: {
     eyebrow: "Standards & Practice",
     heading: "Our Approach",
@@ -146,21 +153,18 @@ export const companyContent: CompanyPageContent = {
         id: "quality-finishing",
         title: "Quality Finishing",
         description:
-          // TODO(client): confirm quality inspection protocol
-          "Focus on accurate slab thickness calibration, clean edge profiles, and consistent surface polish across every batch.",
+          "Focus on accurate slab thickness calibration, clean edge profiles, and consistent surface finish across every batch.",
       },
       {
         id: "clear-communication",
         title: "Clear Communication",
         description:
-          // TODO(client): confirm order updates process
           "Transparent reporting on stone availability, dimensional tolerances, quotation breakdowns, and realistic production lead times.",
       },
       {
         id: "reliable-delivery",
         title: "Reliable Delivery",
         description:
-          // TODO(client): confirm dispatch and packing coordination
           "Careful handling, systematic bundling, and scheduled logistics coordination to ensure materials arrive safely at job sites or ports.",
       },
     ],
@@ -175,8 +179,7 @@ export const companyContent: CompanyPageContent = {
     getDirectionsLabel: "Get Directions on Google Maps",
   },
 
-  // 7. Compliance (Conditional, hidden by default until client provides TSPCB consent order)
-  // TODO(client): verify and provide official TSPCB consent documentation before activating
+  // 7. Compliance (hidden by default)
   compliance: {
     badge: "Environmental Classification",
     heading: "TSPCB Environmental Consent",
@@ -189,9 +192,9 @@ export const companyContent: CompanyPageContent = {
   // 8. Closing CTA
   closingCta: {
     eyebrow: "Direct Inquiries",
-    heading: "Request a Stone Quotation",
+    heading: "Request a Granite Quotation",
     description:
-      "Contact our team for bulk dimensional slabs, project cut-to-size orders, or rough granite and basalt blocks.",
+      "Contact our team for bulk dimensional slabs, project cut-to-size orders, or rough granite blocks.",
     ctaLabel: "Request a Quote",
     ctaHref: "/get-quote",
   },

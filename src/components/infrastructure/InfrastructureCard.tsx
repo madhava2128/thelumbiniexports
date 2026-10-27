@@ -26,10 +26,10 @@ export function InfrastructureCard({
       )}
     >
       {/* Photo Container: 3:2 Aspect Ratio */}
-      <div className="w-full lg:w-1/2 overflow-hidden bg-obsidian shrink-0">
+      <div className="w-full lg:w-1/2 overflow-hidden bg-obsidian shrink-0 aspect-[3/2]">
         <SiteImage
           imageKey={card.imageKey}
-          className="w-full aspect-[3/2] object-cover transition-transform duration-500 group-hover:scale-102"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
         />
       </div>
 
@@ -53,12 +53,6 @@ export function InfrastructureCard({
         <p className="type-body text-stone-grey-text text-sm sm:text-base leading-relaxed">
           {card.description}
         </p>
-
-        {/* Non-intrusive client specification notice */}
-        <div className="pt-2 flex items-center gap-2 text-[11px] font-mono text-stone italic">
-          <span className="w-1.5 h-1.5 rounded-full bg-gold/70" aria-hidden="true" />
-          <span>{card.todoClientNotice}</span>
-        </div>
       </div>
     </article>
   );

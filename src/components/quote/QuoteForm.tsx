@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui";
 import { stones } from "@/content/stones";
 import {
+  finishOptions,
   quantityUnits,
   thicknessOptions,
   sizeChoices,
@@ -25,7 +26,7 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
   const defaultStone =
     initialValues?.stone && stones.some((s) => s.slug === initialValues.stone)
       ? initialValues.stone
-      : stones[0]?.slug || "imperial-pink-granite";
+      : stones[0]?.slug || "tan-brown";
 
   const defaultUnit =
     initialValues?.unit && quantityUnits.some((u) => u.id === initialValues.unit)
@@ -57,6 +58,7 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
     phone: initialValues?.phone || "",
     country: initialValues?.country || "",
     stone: defaultStone,
+    finish: initialValues?.finish || "",
     quantity: initialValues?.quantity || "",
     unit: defaultUnit,
     thickness: defaultThickness,
@@ -205,7 +207,7 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
 
         <div className="type-body text-stone-grey-text space-y-3 text-base leading-relaxed border-t border-b border-stone/20 py-5">
           <p>
-            Your request for wholesale pricing on natural stone has been successfully received. We will reply to{" "}
+            Your request for wholesale pricing on natural granite has been successfully received. We will reply to{" "}
             <strong className="text-obsidian">{formData.email}</strong> shortly.
           </p>
           <p className="text-sm">
@@ -237,6 +239,9 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
       </div>
     );
   }
+
+  const colourStones = stones.filter((s) => s.category === "Colour");
+  const finishStones = stones.filter((s) => s.category === "Finish");
 
   return (
     <div className="rounded-xs border border-stone/20 bg-ivory-surface p-6 sm:p-8 lg:p-10 shadow-xs">
@@ -359,7 +364,7 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder="e.g. purchasing@company.com"
+                placeholder="e.g. d.vance@architectural.com"
                 aria-invalid={Boolean(errors.email)}
                 aria-describedby={errors.email ? "quote-error-email" : undefined}
                 className="w-full rounded-xs border border-stone/30 bg-white px-3.5 py-2.5 text-sm text-obsidian placeholder:text-stone/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
@@ -371,7 +376,7 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
               )}
             </div>
 
-            {/* Phone (Optional) */}
+            {/* Phone Number */}
             <div>
               <label
                 htmlFor="quote-field-phone"
@@ -426,13 +431,13 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Stone Variety Select */}
-            <div className="sm:col-span-2">
+            {/* Stone Variety Select Grouped as Colours and Finishes */}
+            <div>
               <label
                 htmlFor="quote-field-stone"
                 className="block text-xs font-sans font-semibold uppercase tracking-wider text-obsidian mb-1"
               >
-                Natural Stone Variety <span className="text-red-700">*</span>
+                Granite Range <span className="text-red-700">*</span>
               </label>
               <select
                 id="quote-field-stone"
@@ -443,18 +448,50 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
                 aria-describedby={errors.stone ? "quote-error-stone" : undefined}
                 className="w-full rounded-xs border border-stone/30 bg-white px-3.5 py-2.5 text-sm text-obsidian focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
               >
-                {stones.map((s) => (
-                  <option key={s.slug} value={s.slug}>
-                    {s.name} &ndash; {s.type}
-                  </option>
-                ))}
-                <option value="custom_multiple">Multiple Stone Types / Custom Sourcing</option>
+                <optgroup label="Colours">
+                  {colourStones.map((s) => (
+                    <option key={s.slug} value={s.slug}>
+                      {s.name}
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Finishes">
+                  {finishStones.map((s) => (
+                    <option key={s.slug} value={s.slug}>
+                      {s.name}
+                    </option>
+                  ))}
+                </optgroup>
               </select>
               {errors.stone && (
                 <p id="quote-error-stone" role="alert" className="mt-1 text-xs text-red-700 font-medium">
                   {errors.stone}
                 </p>
               )}
+            </div>
+
+            {/* Surface Finish Select / Input */}
+            <div>
+              <label
+                htmlFor="quote-field-finish"
+                className="block text-xs font-sans font-semibold uppercase tracking-wider text-obsidian mb-1"
+              >
+                Surface Finish <span className="text-stone-grey-text text-[11px] font-normal">(Optional)</span>
+              </label>
+              <select
+                id="quote-field-finish"
+                name="finish"
+                value={formData.finish || ""}
+                onChange={handleInputChange}
+                className="w-full rounded-xs border border-stone/30 bg-white px-3.5 py-2.5 text-sm text-obsidian focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
+              >
+                <option value="">Standard / Project Specification</option>
+                {finishOptions.map((opt) => (
+                  <option key={opt.id} value={opt.label}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* Quantity and Unit (Split Grid) */}
@@ -560,7 +597,7 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
                   htmlFor="quote-field-customSize"
                   className="block text-xs font-sans font-semibold uppercase tracking-wider text-obsidian mb-1"
                 >
-                  Custom Size Specifications <span className="text-red-700">*</span>
+                  Specify Custom Dimensions <span className="text-red-700">*</span>
                 </label>
                 <input
                   id="quote-field-customSize"
@@ -568,7 +605,7 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
                   type="text"
                   value={formData.customSize}
                   onChange={handleInputChange}
-                  placeholder="e.g. 600x600x30mm flamed tiles with chamfered edges"
+                  placeholder="e.g. 600x600x30mm flamed tiles or staircase steps"
                   aria-invalid={Boolean(errors.customSize)}
                   aria-describedby={errors.customSize ? "quote-error-customSize" : undefined}
                   className="w-full rounded-xs border border-stone/30 bg-white px-3.5 py-2.5 text-sm text-obsidian placeholder:text-stone/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
@@ -580,14 +617,23 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
                 )}
               </div>
             )}
+          </div>
+        </div>
 
-            {/* Delivery Terms (Incoterms) */}
+        {/* 3. Logistics & Delivery Section */}
+        <div className="pt-2">
+          <h3 className="text-xs font-sans font-bold uppercase tracking-wider text-obsidian border-b border-stone/15 pb-2 mb-4">
+            3. Delivery &amp; Incoterms
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Delivery Incoterms Select */}
             <div>
               <label
                 htmlFor="quote-field-delivery"
                 className="block text-xs font-sans font-semibold uppercase tracking-wider text-obsidian mb-1"
               >
-                Shipment Term <span className="text-red-700">*</span>
+                Shipment Terms <span className="text-red-700">*</span>
               </label>
               <select
                 id="quote-field-delivery"
@@ -610,7 +656,7 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
                 htmlFor="quote-field-destination"
                 className="block text-xs font-sans font-semibold uppercase tracking-wider text-obsidian mb-1"
               >
-                Destination Port / City
+                Destination Port or City <span className="text-stone-grey-text text-[11px] font-normal">(Optional)</span>
               </label>
               <input
                 id="quote-field-destination"
@@ -618,35 +664,41 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
                 type="text"
                 value={formData.destination}
                 onChange={handleInputChange}
-                placeholder="e.g. Port of Rotterdam, Hamburg, or Jebel Ali"
+                placeholder="e.g. Rotterdam, Hamburg, or Jebel Ali"
                 className="w-full rounded-xs border border-stone/30 bg-white px-3.5 py-2.5 text-sm text-obsidian placeholder:text-stone/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
               />
             </div>
           </div>
         </div>
 
-        {/* 3. Project Message / Cutting Schedule */}
+        {/* 4. Project Message & Drawings */}
         <div className="pt-2">
-          <label
-            htmlFor="quote-field-message"
-            className="block text-xs font-sans font-semibold uppercase tracking-wider text-obsidian mb-1"
-          >
-            Project Message &amp; Cutting Notes <span className="text-stone-grey-text text-[11px] font-normal">(Optional)</span>
-          </label>
-          <textarea
-            id="quote-field-message"
-            name="message"
-            rows={4}
-            value={formData.message}
-            onChange={handleInputChange}
-            placeholder="Share surface finish preferences, project schedules, or architectural drawing references..."
-            className="w-full rounded-xs border border-stone/30 bg-white px-3.5 py-2.5 text-sm text-obsidian placeholder:text-stone/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
-          />
+          <h3 className="text-xs font-sans font-bold uppercase tracking-wider text-obsidian border-b border-stone/15 pb-2 mb-4">
+            4. Project Notes &amp; Specifications
+          </h3>
+
+          <div>
+            <label
+              htmlFor="quote-field-message"
+              className="block text-xs font-sans font-semibold uppercase tracking-wider text-obsidian mb-1"
+            >
+              Additional Notes or Cutting Schedule <span className="text-stone-grey-text text-[11px] font-normal">(Optional)</span>
+            </label>
+            <textarea
+              id="quote-field-message"
+              name="message"
+              rows={4}
+              value={formData.message}
+              onChange={handleInputChange}
+              placeholder="Include project timelines, surface finish requirements, edge profiling, or container packaging instructions."
+              className="w-full rounded-xs border border-stone/30 bg-white px-3.5 py-2.5 text-sm text-obsidian placeholder:text-stone/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold leading-relaxed"
+            />
+          </div>
         </div>
 
-        {/* 4. Privacy Consent Checkbox */}
+        {/* 5. Privacy Consent Checkbox */}
         <div className="pt-2">
-          <div className="flex items-start gap-2.5">
+          <div className="flex items-start gap-3">
             <input
               id="quote-field-consent"
               name="consent"
@@ -655,21 +707,22 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
               onChange={handleInputChange}
               aria-invalid={Boolean(errors.consent)}
               aria-describedby={errors.consent ? "quote-error-consent" : undefined}
-              className="mt-0.5 h-4 w-4 rounded-xs border-stone/30 text-gold focus:ring-gold"
+              className="mt-1 h-4 w-4 rounded-xs border-stone/40 text-gold focus:ring-gold"
             />
             <label
               htmlFor="quote-field-consent"
               className="text-xs text-stone-grey-text leading-relaxed select-none"
             >
-              I consent to The Lumbini Exports processing my contact and project details to issue a stone quotation in accordance with the{" "}
+              I agree to the{" "}
               <Link
                 href="/privacy"
                 target="_blank"
                 className="text-obsidian underline hover:text-gold transition-colors font-medium"
               >
                 Privacy Policy
-              </Link>
-              . <span className="text-red-700">*</span>
+              </Link>{" "}
+              and consent to The Lumbini Exports contacting me regarding this stone quotation request.
+              <span className="text-red-700 ml-1">*</span>
             </label>
           </div>
           {errors.consent && (
@@ -679,30 +732,20 @@ export function QuoteForm({ initialValues }: QuoteFormProps) {
           )}
         </div>
 
-        {/* 5. Submit Button */}
-        <div className="pt-4 border-t border-stone/15">
+        {/* Submit Button */}
+        <div className="pt-4 border-t border-stone/20">
           <Button
             type="submit"
             variant="primary"
             size="lg"
             disabled={isSubmitting}
-            className="w-full py-4 text-sm font-semibold tracking-wider shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto px-10 py-4 text-sm font-semibold tracking-wider shadow-md"
           >
-            {isSubmitting ? (
-              <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-4 w-4 text-obsidian" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-                <span>Submitting Quote Inquiry...</span>
-              </span>
-            ) : (
-              "Submit Quote Request"
-            )}
+            {isSubmitting ? "Submitting Quotation Request..." : "Submit Quote Request"}
           </Button>
 
-          <p className="mt-3 text-center text-[11px] text-stone-grey-text">
-            Direct pricing &bull; No middleman markups &bull; Elkathurthy processing facility
+          <p className="mt-3 text-[11px] text-stone-grey-text">
+            Prompt response within 24&ndash;48 business hours from our Elkathurthy operations desk.
           </p>
         </div>
       </form>

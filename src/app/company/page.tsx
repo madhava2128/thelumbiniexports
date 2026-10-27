@@ -15,7 +15,7 @@ import { stones } from "@/content/stones";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "The Lumbini Exports, established 2023. Natural stone cutting and polishing unit in Elkathurthy, Hanamkonda District, Telangana, India.",
+    "The Lumbini Exports, established 2023. Granite cutting and polishing unit in Elkathurthy, Hanamkonda District, Telangana, India.",
 };
 
 export default function CompanyPage() {
@@ -23,6 +23,7 @@ export default function CompanyPage() {
     header,
     story,
     whatWeDo,
+    solarFeature,
     ourStones,
     approach,
     whereToFindUs,
@@ -59,7 +60,7 @@ export default function CompanyPage() {
         </Container>
       </Section>
 
-      {/* 2. Our Story (Ivory, 2 paragraphs maximum, factual, 1 image slot) */}
+      {/* 2. Our Story (Ivory, 2 paragraphs maximum, factual) */}
       <Section background="ivory" spacing="spacious" className="border-b border-stone/20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
@@ -95,7 +96,7 @@ export default function CompanyPage() {
         </Container>
       </Section>
 
-      {/* 3. What We Do (Clean 3-column list) */}
+      {/* 3. What We Do (Clean 3-column list with small tidy solar image) */}
       <Section background="ivory" spacing="spacious" className="border-b border-stone/20">
         <Container>
           <div className="max-w-2xl mx-auto text-center space-y-3 mb-12 sm:mb-16">
@@ -130,10 +131,25 @@ export default function CompanyPage() {
               </div>
             ))}
           </div>
+
+          {/* Small, tidy rooftop solar visual (STEP 3) */}
+          <div className="mt-12 pt-8 border-t border-stone/20 flex flex-col sm:flex-row items-center justify-center gap-6 max-w-xl mx-auto">
+            <figure className="flex flex-col items-center text-center p-3 rounded-xs border border-stone/20 bg-ivory-surface shadow-xs">
+              <div className="w-56 sm:w-64 overflow-hidden rounded-xs bg-obsidian aspect-[4/3]">
+                <SiteImage
+                  imageKey={solarFeature.imageKey}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-2.5 text-xs font-sans text-stone-grey-text">
+                {solarFeature.caption}
+              </figcaption>
+            </figure>
+          </div>
         </Container>
       </Section>
 
-      {/* 4. Our Stones (Compact row linking to 4 collection entries) */}
+      {/* 4. Our Stones (6-item granite range) */}
       <Section background="ivory" spacing="default" className="border-b border-stone/20">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
@@ -149,25 +165,28 @@ export default function CompanyPage() {
               href="/collection"
               className="text-xs font-sans font-semibold uppercase tracking-wider text-obsidian hover:text-gold transition-colors inline-flex items-center gap-1.5"
             >
-              <span>Explore Full Catalog</span>
+              <span>Explore Full Collection</span>
               <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
 
-          {/* Compact 4-column row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* 3-column / 2-column granite cards grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {stones.map((stone) => (
               <Link
                 key={stone.slug}
                 href={`/collection/${stone.slug}`}
-                className="group flex flex-col justify-between p-5 bg-ivory-surface border border-stone/20 rounded-xs hover:border-gold/50 hover:bg-white/60 transition-all duration-200"
+                className="group flex flex-col justify-between p-6 bg-ivory-surface border border-stone/20 rounded-xs hover:border-gold/50 hover:bg-white/60 transition-all duration-200"
               >
                 <div>
                   <span className="type-label text-[10px] text-sage tracking-wider uppercase block">
-                    {stone.type}
+                    {stone.category}
                   </span>
                   <p className="font-sans font-semibold text-obsidian group-hover:text-gold-hover transition-colors text-base mt-1 line-clamp-1">
                     {stone.name}
+                  </p>
+                  <p className="text-xs text-stone-grey-text line-clamp-2 mt-1.5 leading-relaxed">
+                    {stone.shortDescription}
                   </p>
                 </div>
 
@@ -183,7 +202,7 @@ export default function CompanyPage() {
         </Container>
       </Section>
 
-      {/* 5. Our Approach (General factual commitments, no unprovable claims) */}
+      {/* 5. Our Approach */}
       <Section background="ivory" spacing="spacious" className="border-b border-stone/20">
         <Container>
           <div className="max-w-2xl mx-auto text-center space-y-3 mb-12 sm:mb-16">
@@ -220,7 +239,7 @@ export default function CompanyPage() {
         </Container>
       </Section>
 
-      {/* 6. Where to Find Us (Two address cards, directions link, no embedded map) */}
+      {/* 6. Where to Find Us */}
       <Section background="ivory" spacing="spacious" className="border-b border-stone/20">
         <Container>
           <div className="max-w-2xl mx-auto text-center space-y-3 mb-12 sm:mb-16">
@@ -353,8 +372,7 @@ export default function CompanyPage() {
         </Container>
       </Section>
 
-      {/* 7. Compliance (Conditional: hidden by default until client provides consent document) */}
-      {/* TODO(client): enable showGreenClassification in site.ts only after verified consent documentation is provided */}
+      {/* 7. Compliance (hidden by default) */}
       {siteConfig.showGreenClassification && (
         <Section background="ivory" spacing="default" className="border-b border-stone/20">
           <Container size="narrow">

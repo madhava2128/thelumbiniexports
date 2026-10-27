@@ -2,21 +2,16 @@ import { type ImageSlotKey } from "./images";
 
 /**
  * Infrastructure and Processing Facility Content for The Lumbini Exports.
- *
  * Sourced strictly from verified client facts:
- * - Unit: Syno 882 B2/2/1/2, 882/B1/1, Elkathurthy Village & Mandal, Hanamkonda District, Telangana 505476, India.
+ * - Unit: SyNo 882 B2/2/1/2 882/B1/1, Elkathurthy Mandal, Hanamkonda, Telangana 505476, India.
  * - Established: 2023.
- * - Capabilities: Granite, marble, and basalt cutting, polishing, and export preparation.
- * - No invented machine brands, model numbers, output capacities, or client statistics.
- * - All descriptions marked with TODO(client) for future client confirmation.
+ * - Capabilities: Granite cutting, polishing, and export preparation.
  */
 
 export interface InfrastructurePhotoCard {
   id: string;
   sideHeading: string;
   description: string;
-  // TODO(client): confirm technical details for this infrastructure item
-  todoClientNotice: string;
   imageKey: ImageSlotKey;
 }
 
@@ -52,10 +47,6 @@ export interface InfrastructurePageContent {
   };
 }
 
-/**
- * Typed sections and photo cards array.
- * Add or remove photo cards freely within each section array.
- */
 export const infrastructureSections: InfrastructureSection[] = [
   {
     id: "machines",
@@ -64,31 +55,28 @@ export const infrastructureSections: InfrastructureSection[] = [
     eyebrow: "Processing Machinery",
     heading: "Machines",
     intro:
-      "Our processing unit in Elkathurthy operates block sawing and continuous polishing equipment for granite, marble, and basalt stone.",
+      "Our processing unit in Elkathurthy operates block sawing, multi-blade cutting, and continuous line polishing equipment for natural granite.",
     cards: [
       {
-        id: "cutting-line",
-        sideHeading: "Cutting line",
+        id: "multi-cutter",
+        sideHeading: "Multi-cutter",
         description:
-          "Block dressing and multi-blade gang saw cutting to slice raw natural stone blocks into dimensional slabs.",
-        todoClientNotice: "TODO(client): confirm cutting equipment details and specifications",
-        imageKey: "infra_gangsaw_block_cutter",
+          "14-blade multi-cutter machine slicing raw granite blocks into calibrated dimensional slabs.",
+        imageKey: "infra_multi_cutter",
       },
       {
         id: "polishing-line",
-        sideHeading: "Polishing",
+        sideHeading: "Line polishing",
         description:
-          "Automated continuous line polishing applying progressive abrasive diamond heads for calibrated slab gloss.",
-        todoClientNotice: "TODO(client): confirm polishing machinery and finish capabilities",
+          "20-head continuous line polishing machine applying progressive abrasives for calibrated slab gloss.",
         imageKey: "infra_polishing_line",
       },
       {
-        id: "bridge-cutting",
-        sideHeading: "Bridge cutting",
+        id: "edge-cutter",
+        sideHeading: "Edge cutting",
         description:
-          "Precision bridge saw cutting for dimensional accuracy, custom tile formats, and architectural project schedules.",
-        todoClientNotice: "TODO(client): confirm bridge saw sizing equipment and tolerances",
-        imageKey: "infra_bridge_saw_cutting",
+          "Precision edge cutting bridge saws trimming granite slabs to exact project dimensions.",
+        imageKey: "infra_edge_cutter",
       },
     ],
   },
@@ -99,31 +87,35 @@ export const infrastructureSections: InfrastructureSection[] = [
     eyebrow: "Unit Grounds & Operations",
     heading: "Operations & Facilities",
     intro:
-      "Located at Elkathurthy Mandal, Hanamkonda District, our unit coordinates raw stone staging, covered processing, and dimensional sorting.",
+      "Located at Elkathurthy Mandal, Hanamkonda District, our unit coordinates raw granite block staging, covered processing, and dimensional sorting.",
     cards: [
       {
         id: "raw-material-yard",
         sideHeading: "Raw material yard",
         description:
-          "Open-air block storage and inspection yard equipped for heavy stone block staging prior to primary gang saw intake.",
-        todoClientNotice: "TODO(client): confirm yard dimensions and crane capacity",
-        imageKey: "infra_stockyard",
+          "Open-air block storage yard equipped with an overhead gantry crane for heavy granite block staging.",
+        imageKey: "infra_raw_yard",
       },
       {
         id: "processing-bay",
         sideHeading: "Processing bay",
         description:
-          "Covered industrial bays housing slab calibration, water recycling systems, and intermediate stone handling.",
-        todoClientNotice: "TODO(client): confirm facility square footage and water recycling details",
-        imageKey: "infra_facilities_processing",
+          "Covered industrial bays housing slab cutting, calibration, water handling, and finishing machinery.",
+        imageKey: "infra_processing_bay",
       },
       {
         id: "inspection-area",
         sideHeading: "Inspection area",
         description:
-          "Dedicated quality checking area for diagonal tolerance verification, surface sheen inspection, and slab sorting.",
-        todoClientNotice: "TODO(client): confirm quality inspection checkpoints and lighting setup",
-        imageKey: "infra_quality_inspection",
+          "Dedicated quality inspection area for surface gloss verification, diagonal accuracy, and slab sorting.",
+        imageKey: "infra_inspection_area",
+      },
+      {
+        id: "rooftop-solar",
+        sideHeading: "Rooftop solar",
+        description:
+          "Solar panels installed on the roof of our factory.",
+        imageKey: "infra_rooftop_solar",
       },
     ],
   },
@@ -138,26 +130,23 @@ export const infrastructureSections: InfrastructureSection[] = [
     cards: [
       {
         id: "crate-packing",
-        sideHeading: "Crate packing",
+        sideHeading: "Crate packaging",
         description:
-          "Custom wooden crating with protective plastic lining, foam interleaving, and corner reinforcement for slab protection.",
-        todoClientNotice: "TODO(client): confirm fumigation and ISPM-15 crating specifications",
-        imageKey: "infra_delivery_crating",
+          "Sturdy wooden crating with protective lining and corner reinforcement for slab protection during transit.",
+        imageKey: "infra_delivery_packaging",
       },
       {
         id: "loading",
         sideHeading: "Loading",
         description:
-          "Container stuffing and flatbed truck loading with secured bracing and heavy-duty strapping to prevent transit shifting.",
-        todoClientNotice: "TODO(client): confirm container stuffing protocol and forklift/crane equipment",
-        imageKey: "infra_export_packing",
+          "Loading crated granite slabs securely onto transport flatbeds and shipping containers.",
+        imageKey: "infra_delivery_loading",
       },
       {
         id: "dispatch-transit",
         sideHeading: "Dispatch & transport",
         description:
-          "Freight dispatch coordination for domestic project deliveries and bonded road haulage to regional sea shipping terminals.",
-        todoClientNotice: "TODO(client): confirm freight carrier agreements and standard dispatch lead times",
+          "Freight coordination for domestic project deliveries and transit to container port terminals.",
         imageKey: "infra_delivery_dispatch",
       },
     ],
@@ -169,7 +158,7 @@ export const infrastructureContent: InfrastructurePageContent = {
     eyebrow: "Processing Unit & Operations",
     title: "Our Infrastructure",
     intro:
-      "A granite and natural stone cutting and polishing facility in Elkathurthy Mandal, Hanamkonda District, equipped for architectural supply and export.",
+      "A granite cutting and polishing facility in Elkathurthy Mandal, Hanamkonda District, equipped for architectural supply and export.",
   },
   sections: infrastructureSections,
   closingCta: {

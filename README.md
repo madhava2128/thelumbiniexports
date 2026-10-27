@@ -1,6 +1,6 @@
 # The Lumbini Exports — Official Website
 
-> Official commercial web application for **The Lumbini Exports** (Established 2023), an architectural granite and natural stone cutting and polishing unit in Elkathurthy Village & Mandal, Hanamkonda District, Telangana, India.
+> Official commercial web application for **The Lumbini Exports** (Established 2023), an architectural granite cutting and polishing unit in Elkathurthy Village & Mandal, Hanamkonda District, Telangana, India.
 
 ---
 
@@ -95,9 +95,9 @@ All textual content is decoupled from layout components and centralized in stron
 | [`src/content/site.ts`](src/content/site.ts) | Company legal name, physical unit address, registered office, official email, phone, and environmental compliance flags. |
 | [`src/content/home.ts`](src/content/home.ts) | Home page hero headline, supporting copy, value pillars, about teaser, process steps, and call to action. |
 | [`src/content/company.ts`](src/content/company.ts) | Company page story (2 paragraphs), what we do (3-phase list), core commitments, and directions copy. |
-| [`src/content/stones.ts`](src/content/stones.ts) | Complete natural stone catalog (Imperial Pink, Tan Brown, Marble, Basalt), technical properties, finishes, and applications. |
+| [`src/content/stones.ts`](src/content/stones.ts) | Complete natural granite catalog (Tan Brown, Royal Blue, Safari Blue, Honey Blue, Lapotra, Flaming), technical properties, finishes, and applications. |
 | [`src/content/infrastructure.ts`](src/content/infrastructure.ts) | Facility machinery, covered processing bays, raw block stockyard, and delivery photo cards. |
-| [`src/content/quote-options.ts`](src/content/quote-options.ts) | Measurement units (sq ft, sq m, MT, FCL), slab thicknesses, cut formats, and Incoterm shipment choices. |
+| [`src/content/quote-options.ts`](src/content/quote-options.ts) | Surface finishes, measurement units (sq ft, sq m, MT, FCL), slab thicknesses, cut formats, and Incoterm shipment choices. |
 | [`src/content/legal.ts`](src/content/legal.ts) | Plain-English legal copy for Terms & Conditions and Privacy Policy, plus the `LEGAL_LAST_UPDATED` constant. |
 
 ---
@@ -107,15 +107,15 @@ All textual content is decoupled from layout components and centralized in stron
 The website uses a centralized image registry pattern via [`src/content/images.ts`](src/content/images.ts) and the shared [`SiteImage`](src/components/ui/SiteImage.tsx) component.
 
 ### Step-by-Step Image Replacement
-1. Place your photographic files (JPEG, PNG, or WebP) in `public/images/` (e.g. `public/images/stones/imperial-pink.jpg`).
+1. Place your photographic files (JPEG, PNG, or WebP) in `public/images/` (e.g. `public/images/stones/tan-brown/main.webp`).
 2. Open [`src/content/images.ts`](src/content/images.ts).
-3. Find the corresponding image slot key and replace `src: null` with the public file path:
+3. Find the corresponding image slot key and update the `src` property:
    ```typescript
-   stone_imperial_pink_main: {
-     key: "stone_imperial_pink_main",
-     label: "Imperial Pink Granite - Primary Slab",
-     src: "/images/stones/imperial-pink.jpg", // <--- Update here
-     alt: "Polished Imperial Pink Granite slab showing pink feldspar and grey quartz minerals",
+   stone_tan_brown_main: {
+     key: "stone_tan_brown_main",
+     label: "Tan Brown - Primary Slab",
+     src: "/images/stones/tan-brown/main.webp",
+     alt: "Tan Brown granite slab showing dark brown and black mineral crystals",
      aspectRatio: "3:2",
      recommendedWidth: 1200,
      recommendedHeight: 800,

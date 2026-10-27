@@ -27,7 +27,7 @@ export default function NotFound() {
             </div>
 
             <p className="type-body text-ivory/80 text-base sm:text-lg max-w-lg mx-auto leading-relaxed">
-              The natural stone variety, facility document, or page you requested cannot be found or may have been relocated.
+              The granite variety, facility document, or page you requested cannot be found or may have been relocated.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
@@ -35,7 +35,7 @@ export default function NotFound() {
                 Return to Home
               </Button>
               <Button href="/collection" variant="goldOutline" size="md" className="w-full sm:w-auto px-7">
-                Browse Stone Collection
+                Browse Granite Collection
               </Button>
               <Button href="/get-quote" variant="secondary" size="md" className="w-full sm:w-auto px-7">
                 Request a Quote

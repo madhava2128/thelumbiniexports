@@ -34,10 +34,12 @@ export const footerNav = {
     { label: "Request a Quote", href: "/get-quote" },
   ],
   collectionLinks: [
-    { label: "Imperial Pink Granite", href: "/collection/imperial-pink-granite" },
-    { label: "Tan Brown Granite", href: "/collection/tan-brown-granite" },
-    { label: "Natural Indian Marble", href: "/collection/marble" },
-    { label: "Basalt Stone & Blocks", href: "/collection/basalt-stone" },
+    { label: "Tan Brown", href: "/collection/tan-brown" },
+    { label: "Royal Blue", href: "/collection/royal-blue" },
+    { label: "Safari Blue", href: "/collection/safari-blue" },
+    { label: "Honey Blue", href: "/collection/honey-blue" },
+    { label: "Lapotra (Finish)", href: "/collection/lapotra" },
+    { label: "Flaming (Finish)", href: "/collection/flaming" },
   ],
   legal: [
     { label: "Terms & Conditions", href: "/terms" },

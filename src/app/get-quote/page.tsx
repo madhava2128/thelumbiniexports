@@ -5,15 +5,16 @@ import { QuoteForm, QuoteContactCard } from "@/components/quote";
 import { type QuoteFormInput } from "@/lib/quote-schema";
 
 export const metadata: Metadata = {
-  title: "Request a Quote | The Lumbini Exports",
+  title: "Request a Quote",
   description:
-    "Request direct factory pricing and containerized export quotes for Indian granite, marble, and basalt stone. Prompt itemized quotations within 24-48 hours.",
+    "Request direct factory pricing and containerized export quotes for Indian granite. Prompt itemized quotations within 24-48 hours.",
 };
 
 interface GetQuotePageProps {
   searchParams: Promise<{
     stone?: string;
     stoneName?: string;
+    finish?: string;
     quantity?: string;
     unit?: string;
     thickness?: string;
@@ -30,6 +31,7 @@ async function QuoteFormContainer({
   searchParams: Promise<{
     stone?: string;
     stoneName?: string;
+    finish?: string;
     quantity?: string;
     unit?: string;
     thickness?: string;
@@ -43,6 +45,7 @@ async function QuoteFormContainer({
 
   const initialValues: Partial<QuoteFormInput> = {
     stone: params.stone,
+    finish: params.finish,
     quantity: params.quantity,
     unit: params.unit,
     thickness: params.thickness,
@@ -88,7 +91,7 @@ export default function GetQuotePage({ searchParams }: GetQuotePageProps) {
               Request a Quote
             </Heading>
             <p className="type-body text-ivory/80 text-lg sm:text-xl font-normal leading-relaxed">
-              Direct quarry and factory pricing on granite, marble, and basalt. We calculate itemized FOB or CIF quotations and reply promptly within 24&ndash;48 business hours.
+              Direct factory pricing on natural Indian granite. We calculate itemized FOB or CIF quotations and reply promptly within 24&ndash;48 business hours.
             </p>
           </div>
         </Container>

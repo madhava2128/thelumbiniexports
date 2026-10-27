@@ -1,12 +1,7 @@
 /**
  * Quote Request Form Configuration Options
  *
- * ============================================================================
- * NOTICE: TO BE CONFIRMED WITH THE CLIENT
- * ============================================================================
- * All option lists below are preliminary defaults configured for natural stone
- * and granite export quotation requests. The client/developer may freely adjust,
- * expand, or reorder these options.
+ * Configured for natural Indian granite export quotation requests.
  */
 
 export interface QuoteOptionItem {
@@ -16,11 +11,20 @@ export interface QuoteOptionItem {
 }
 
 /**
+ * Surface finish options available for colour granite varieties.
+ */
+export const finishOptions: QuoteOptionItem[] = [
+  { id: "polished", label: "Polished", description: "Smooth mirror-gloss reflective surface" },
+  { id: "flamed", label: "Flamed", description: "Thermal flame-torched non-slip surface" },
+  { id: "lapotra", label: "Lapotra", description: "Mechanically brushed textured anti-skid surface" },
+  { id: "other", label: "Other", description: "Honed, leathered, or custom specified" },
+];
+
+/**
  * Measurement units for quote volume inquiries.
- * TODO(client): confirm preferred measurement units
  */
 export const quantityUnits: QuoteOptionItem[] = [
-  { id: "sq_ft", label: "Square Feet (sq ft)", description: "Imperial surface area" },
+  { id: "sq_ft", label: "Square Feet (sq ft)", description: "Surface area in square feet" },
   { id: "sq_m", label: "Square Metres (sq m)", description: "Metric surface area" },
   { id: "tonnes", label: "Metric Tonnes (MT)", description: "Heavy block or weight-based orders" },
   { id: "containers", label: "Full Container Loads (FCL)", description: "20ft export ocean containers" },
@@ -28,7 +32,6 @@ export const quantityUnits: QuoteOptionItem[] = [
 
 /**
  * Standard stone thickness options.
- * TODO(client): confirm standard slab thickness choices offered by factory
  */
 export const thicknessOptions: QuoteOptionItem[] = [
   { id: "18mm", label: "18 mm", description: "Standard commercial slab thickness" },
@@ -39,7 +42,6 @@ export const thicknessOptions: QuoteOptionItem[] = [
 
 /**
  * Standard stone cutting / fabrication sizing choices.
- * TODO(client): confirm standard cut formats provided
  */
 export const sizeChoices: QuoteOptionItem[] = [
   { id: "slabs", label: "Gangsaw / Cutter Slabs", description: "Full dimensional slabs" },
@@ -51,7 +53,6 @@ export const sizeChoices: QuoteOptionItem[] = [
 
 /**
  * International Commercial Terms (Incoterms) and delivery choices.
- * TODO(client): confirm standard shipment terms offered to overseas buyers
  */
 export const deliveryChoices: QuoteOptionItem[] = [
   { id: "ex_works", label: "Ex-Works (Factory, Telangana)", description: "Buyer arranges freight from Elkathurthy facility" },

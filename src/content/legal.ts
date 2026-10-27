@@ -52,7 +52,7 @@ export const termsContent: LegalDocument = {
       title: "3. Product Information & Natural Stone Variations",
       paragraphs: [
         "All descriptions, photographs, digital textures, dimensions, and specifications presented on this website are provided for illustrative and indicative purposes only.",
-        "Natural stone—including granite, marble, and basalt—is an inherent product of geological formation. Consequently, every slab and block exhibits natural variations in veining, colour tone, crystalline distribution, fissure patterns, and surface texture. Physical samples, digital photographs, and catalog entries provide a general representation of color and grain structure, but do not guarantee exact uniformity across shipments.",
+        "Natural stone—including our quarried granite varieties—is an inherent product of geological formation. Consequently, every slab and block exhibits natural variations in veining, colour tone, crystalline distribution, fissure patterns, and surface texture. Physical samples, digital photographs, and catalog entries provide a general representation of color and grain structure, but do not guarantee exact uniformity across shipments.",
       ],
     },
     {
@@ -154,7 +154,7 @@ export const privacyContent: LegalDocument = {
     },
     {
       id: "cookies-analytics",
-      title: "6. Cookies & Web Analytics (Placeholder)",
+      title: "6. Cookies & Web Analytics",
       paragraphs: [
         "This website currently operates without third-party advertising cookies or cross-site tracking technologies.",
         "Essential session identifiers may be used by our hosting platform solely to maintain secure network connections and prevent distributed denial-of-service (DDoS) attacks. Should we introduce privacy-focused analytics or measurement tools in the future, this policy will be updated accordingly.",
