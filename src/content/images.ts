@@ -213,7 +213,49 @@ export const imageSlots = {
     objectPosition: "center center",
   },
 
-  // 2. Royal Blue Granite
+  // 2. Peacock Brown Granite
+  stone_peacock_brown_main: {
+    key: "stone_peacock_brown_main",
+    label: "Peacock Brown - Primary Slab",
+    src: "/images/stones/peacock-brown/main.webp",
+    alt: "Peacock Brown granite slab showing dark brown and black crystalline minerals",
+    aspectRatio: "3:2",
+    recommendedWidth: 1200,
+    recommendedHeight: 800,
+    objectPosition: "center center",
+  },
+  stone_peacock_brown_texture: {
+    key: "stone_peacock_brown_texture",
+    label: "Peacock Brown - Texture Detail",
+    src: "/images/stones/peacock-brown/texture.webp",
+    alt: "Close-up texture of Peacock Brown granite mineral pattern",
+    aspectRatio: "1:1",
+    recommendedWidth: 800,
+    recommendedHeight: 800,
+    objectPosition: "center center",
+  },
+  stone_peacock_brown_slab: {
+    key: "stone_peacock_brown_slab",
+    label: "Peacock Brown - Factory Slabs",
+    src: "/images/stones/peacock-brown/slab.webp",
+    alt: "Peacock Brown granite slabs arranged in the factory bay",
+    aspectRatio: "3:2",
+    recommendedWidth: 1200,
+    recommendedHeight: 800,
+    objectPosition: "center center",
+  },
+  stone_peacock_brown_application: {
+    key: "stone_peacock_brown_application",
+    label: "Peacock Brown - Application",
+    src: "/images/stones/peacock-brown/application.webp",
+    alt: "Peacock Brown granite installed in an interior flooring application",
+    aspectRatio: "3:2",
+    recommendedWidth: 1200,
+    recommendedHeight: 800,
+    objectPosition: "center 70%",
+  },
+
+  // 3. Royal Blue Granite
   stone_royal_blue_main: {
     key: "stone_royal_blue_main",
     label: "Royal Blue - Primary Slab",
@@ -255,7 +297,7 @@ export const imageSlots = {
     objectPosition: "center center",
   },
 
-  // 3. Safari Blue Granite
+  // 4. Safari Blue Granite
   stone_safari_blue_main: {
     key: "stone_safari_blue_main",
     label: "Safari Blue - Primary Slab",
@@ -297,7 +339,7 @@ export const imageSlots = {
     objectPosition: "center center",
   },
 
-  // 4. Honey Blue Granite
+  // 5. Honey Blue Granite
   stone_honey_blue_main: {
     key: "stone_honey_blue_main",
     label: "Honey Blue - Primary Slab",
@@ -339,7 +381,7 @@ export const imageSlots = {
     objectPosition: "center center",
   },
 
-  // 5. Lapotra Granite (Finish)
+  // 6. Lapotra Granite (Finish)
   stone_lapotra_main: {
     key: "stone_lapotra_main",
     label: "Lapotra - Primary Slab",
@@ -381,7 +423,7 @@ export const imageSlots = {
     objectPosition: "center center",
   },
 
-  // 6. Flaming Granite (Finish)
+  // 7. Flaming Granite (Finish)
   stone_flaming_main: {
     key: "stone_flaming_main",
     label: "Flaming - Primary Slab",

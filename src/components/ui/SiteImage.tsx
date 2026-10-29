@@ -21,9 +21,6 @@ const aspectClasses: Record<string, string> = {
   "21:9": "aspect-[21/9]",
 };
 
-// Subtle neutral blur data URL for smooth image transitions
-const BLUR_DATA_URL =
-  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4IDUiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjUiIGZpbGw9IiMyNTI4MjciLz48L3N2Zz4=";
 
 /**
  * SiteImage component for The Lumbini Exports.
@@ -60,15 +57,14 @@ export function SiteImage({
 
     if (fill) {
       return (
-        <div className={cn("relative overflow-hidden", aspectClass, className)}>
+        <div className={cn("relative overflow-hidden", className)}>
           <Image
             src={slot.src}
             alt={slot.alt}
             fill
-            sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
+            sizes={sizes || "100vw"}
             priority={priority}
-            placeholder="blur"
-            blurDataURL={BLUR_DATA_URL}
+            placeholder="empty"
             style={objectPositionStyle}
             className="object-cover"
           />
@@ -83,8 +79,7 @@ export function SiteImage({
         width={slot.recommendedWidth}
         height={slot.recommendedHeight}
         priority={priority}
-        placeholder="blur"
-        blurDataURL={BLUR_DATA_URL}
+        placeholder="empty"
         style={objectPositionStyle}
         sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
         className={cn("h-auto w-full object-cover", aspectClass, className)}

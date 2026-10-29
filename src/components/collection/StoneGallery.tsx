@@ -68,6 +68,7 @@ export function StoneGallery({ imageKeys, stoneName }: StoneGalleryProps) {
           <SiteImage
             imageKey={selectedKey}
             priority
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 650px"
             className="w-full aspect-[3/2] object-cover transition-transform duration-300 group-hover:scale-[1.01]"
           />
 
@@ -122,6 +123,7 @@ export function StoneGallery({ imageKeys, stoneName }: StoneGalleryProps) {
               <SiteImage
                 imageKey={item.key}
                 showDetailsInPlaceholder={false}
+                sizes="(max-width: 640px) 25vw, 150px"
                 className="w-full aspect-[3/2] object-cover"
               />
               <span className="sr-only">{item.label}</span>

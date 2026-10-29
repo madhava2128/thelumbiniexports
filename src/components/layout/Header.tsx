@@ -55,7 +55,7 @@ export function Header() {
           <div className="flex h-20 sm:h-24 items-center justify-between gap-4">
             {/* Big textless logo on the top-left */}
             <div className="flex shrink-0 items-center">
-              <Logo size="header" href="/" />
+              <Logo size="header" href="/" priority />
             </div>
 
             {/* Desktop Navigation Links */}
@@ -102,7 +102,7 @@ export function Header() {
                   size="sm"
                   className="shadow-sm font-semibold tracking-wider text-xs px-5 py-2.5"
                 >
-                  Get Quote
+                  Request a Quote
                 </Button>
               </div>
 

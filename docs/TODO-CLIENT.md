@@ -20,13 +20,14 @@ None of these notes appear on the public, rendered website.
 ---
 
 ## 2. Product Catalog (`src/content/stones.ts`)
-The collection currently offers the 6 confirmed granite items:
+The collection currently offers the 7 confirmed granite items:
 1. Tan Brown (Colour)
-2. Royal Blue (Colour)
-3. Safari Blue (Colour)
-4. Honey Blue (Colour)
-5. Lapotra (Finish)
-6. Flaming (Finish)
+2. Peacock Brown (Colour)
+3. Royal Blue (Colour)
+4. Safari Blue (Colour)
+5. Honey Blue (Colour)
+6. Lapotra (Finish)
+7. Flaming (Finish)
 
 Future technical specifications to confirm if lab test certificates are available:
 - [ ] Certified compressive strength (MPa)

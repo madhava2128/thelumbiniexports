@@ -78,9 +78,15 @@ cp .env.example .env.local
 | `QUOTE_FROM_EMAIL` | Server-only | Optional | Verified sender address (e.g., `The Lumbini Exports <quotes@thelumbiniexports.com>` or `onboarding@resend.dev` during initial setup). |
 | `NEXT_PUBLIC_PHONE` | Browser/Client | Optional | International phone number for customer contact. Filtered out if left as placeholder. |
 | `NEXT_PUBLIC_WHATSAPP` | Browser/Client | Optional | International WhatsApp number. Renders the floating chat button and header WhatsApp links only when a valid number is provided. |
-| `NEXT_PUBLIC_SITE_URL` | Browser/Client | Optional | Canonical production URL (e.g., `https://thelumbiniexports.com`) for metadata and OpenGraph. |
+| `NEXT_PUBLIC_SITE_URL` | Browser/Client | Optional | Canonical production URL (defaults to `https://www.thelumbiniexports.in`). When set to this URL, search engines are permitted to index the site; on staging/preview domains, `noindex` is applied automatically. |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | Browser/Client | Optional | Google Search Console site verification token. When provided, renders `<meta name="google-site-verification" content="..." />`. |
+| `NEXT_PUBLIC_BING_VERIFICATION` | Browser/Client | Optional | Bing Webmaster Tools verification token. When provided, renders `<meta name="msvalidate.01" content="..." />`. |
 | `TURNSTILE_SECRET_KEY` | Server-only | Optional | Cloudflare Turnstile secret key. Bot verification activates automatically if this key is set. |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Browser/Client | Optional | Cloudflare Turnstile site key for client challenge widget. |
+
+> **Canonical Host & Domain Redirect Requirement**:
+> The canonical host for the production website is **`https://www.thelumbiniexports.in`**.
+> At the hosting / DNS provider level (e.g. Vercel, Cloudflare, or DNS provider), you **must configure a permanent HTTP 301 redirect** from the non-www apex domain (`thelumbiniexports.in`) to the www subdomain (`www.thelumbiniexports.in`). All canonical tags, sitemaps, OpenGraph links, and structured data point strictly to the `www` address.
 
 > **Security Note**: Never prefix API keys or secrets with `NEXT_PUBLIC_`. All email dispatch and anti-bot verification occurs strictly on the server in [`src/app/api/quote/route.ts`](src/app/api/quote/route.ts).
 

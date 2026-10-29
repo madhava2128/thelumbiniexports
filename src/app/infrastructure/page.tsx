@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   Container,
   Section,
@@ -11,11 +12,15 @@ import {
   InfrastructureCard,
 } from "@/components/infrastructure";
 import { infrastructureContent } from "@/content/infrastructure";
+import { JsonLd, getBreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Our Infrastructure & Processing Facility | The Lumbini Exports",
+  title: "Granite Processing Unit & Facilities | The Lumbini Exports",
   description:
-    "Explore our stone cutting line, automated slab polishing, stockyards, and export container packing facilities in Elkathurthy Mandal, Telangana.",
+    "Granite cutting unit in Elkathurthy, Hanamkonda, Telangana: 14-blade multi-cutters, 20-head line polishers, stockyards, and rooftop solar facility.",
+  alternates: {
+    canonical: "/infrastructure",
+  },
 };
 
 export default function InfrastructurePage() {
@@ -23,6 +28,14 @@ export default function InfrastructurePage() {
 
   return (
     <div className="flex-1">
+      {/* Structured Data: BreadcrumbList */}
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Infrastructure", path: "/infrastructure" },
+        ])}
+      />
+
       {/* 1. Page Header Band (Charcoal) */}
       <Section
         background="charcoal"
@@ -31,6 +44,21 @@ export default function InfrastructurePage() {
       >
         <Container>
           <div className="max-w-3xl space-y-4">
+            {/* Breadcrumb Navigation */}
+            <nav aria-label="Breadcrumb" className="mb-2">
+              <ol className="flex items-center gap-2 text-xs font-sans text-ivory/60">
+                <li>
+                  <Link href="/" className="hover:text-gold transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-ivory/30">/</li>
+                <li className="font-semibold text-ivory" aria-current="page">
+                  Infrastructure
+                </li>
+              </ol>
+            </nav>
+
             <Eyebrow accent="gold" withLine>
               {header.eyebrow}
             </Eyebrow>
@@ -128,7 +156,7 @@ export default function InfrastructurePage() {
                 size="lg"
                 className="w-full sm:w-auto px-8 py-4 text-sm font-semibold tracking-wider shadow-lg"
               >
-                {closingCta.primaryCta.label}
+                Request a Quote
               </Button>
               <Button
                 href={closingCta.secondaryCta.href}

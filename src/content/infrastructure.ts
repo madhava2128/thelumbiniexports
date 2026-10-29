@@ -156,9 +156,9 @@ export const infrastructureSections: InfrastructureSection[] = [
 export const infrastructureContent: InfrastructurePageContent = {
   header: {
     eyebrow: "Processing Unit & Operations",
-    title: "Our Infrastructure",
+    title: "Granite Processing Unit & Facilities",
     intro:
-      "A granite cutting and polishing facility in Elkathurthy Mandal, Hanamkonda District, equipped for architectural supply and export.",
+      "A dedicated granite cutting and polishing facility in Elkathurthy Mandal, Hanamkonda District, equipped for architectural supply and global container export.",
   },
   sections: infrastructureSections,
   closingCta: {

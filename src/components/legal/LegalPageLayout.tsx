@@ -18,6 +18,21 @@ export function LegalPageLayout({ document }: LegalPageLayoutProps) {
       >
         <Container>
           <div className="max-w-3xl space-y-4">
+            {/* Breadcrumb Navigation */}
+            <nav aria-label="Breadcrumb" className="mb-2">
+              <ol className="flex items-center gap-2 text-xs font-sans text-ivory/60">
+                <li>
+                  <Link href="/" className="hover:text-gold transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-ivory/30">/</li>
+                <li className="font-semibold text-ivory" aria-current="page">
+                  {document.title}
+                </li>
+              </ol>
+            </nav>
+
             <Eyebrow accent="gold" withLine>
               {document.eyebrow}
             </Eyebrow>

@@ -17,13 +17,58 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.thelumbiniexports.in";
+const isProduction =
+  siteUrl === "https://www.thelumbiniexports.in" ||
+  siteUrl === "https://thelumbiniexports.in" ||
+  process.env.NODE_ENV !== "production";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    template: "%s | The Lumbini Exports",
-    default: "The Lumbini Exports | Indian Granite Cutters & Exporters",
+    default: "Granite Exporter in Telangana | The Lumbini Exports",
+    template: "%s",
   },
   description:
-    "Suppliers and exporters of natural Indian granite. Cutting and polishing unit in Telangana, India. Established 2023.",
+    "Granite cutting, polishing and export in Hanamkonda, Telangana. Tan Brown, Peacock Brown, Royal Blue, Safari Blue, Honey Blue, Lapotra and Flaming.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: siteUrl,
+    siteName: "The Lumbini Exports",
+    title: "Granite Exporter in Telangana | The Lumbini Exports",
+    description:
+      "Granite cutting, polishing and export in Hanamkonda, Telangana. Tan Brown, Peacock Brown, Royal Blue, Safari Blue, Honey Blue, Lapotra and Flaming.",
+    images: [
+      {
+        url: "/images/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "The Lumbini Exports - Natural Granite Exporter & Processing Unit in Hanamkonda, Telangana",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Granite Exporter in Telangana | The Lumbini Exports",
+    description:
+      "Granite cutting, polishing and export in Hanamkonda, Telangana. Tan Brown, Peacock Brown, Royal Blue, Safari Blue, Honey Blue, Lapotra and Flaming.",
+    images: ["/images/og-default.jpg"],
+  },
+  robots: {
+    index: isProduction,
+    follow: isProduction,
+    googleBot: {
+      index: isProduction,
+      follow: isProduction,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/brand/favicon.png", type: "image/png" },
@@ -32,6 +77,12 @@ export const metadata: Metadata = {
     ],
     shortcut: "/brand/favicon.png",
     apple: "/apple-touch-icon.png",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+      : undefined,
   },
 };
 
@@ -58,11 +109,11 @@ export default function RootLayout({
         {/* Global Persistent Header */}
         <Header />
 
-        {/* Semantic Main Landmark with Subtle Content Fade-in */}
+        {/* Semantic Main Landmark */}
         <main
           id="main-content"
           tabIndex={-1}
-          className="flex-1 flex flex-col page-fade-in focus:outline-none"
+          className="flex-1 flex flex-col focus:outline-none"
         >
           {children}
         </main>

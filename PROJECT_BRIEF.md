@@ -4,13 +4,14 @@
 - **Company Name**: The Lumbini Exports
 - **Established**: 2023
 - **Business**: A granite cutting and polishing unit that supplies and exports natural granite only.
-- **Granite Range (Six Items)**:
+- **Granite Range (Seven Items)**:
   1. Tan Brown (Colour)
-  2. Royal Blue (Colour)
-  3. Safari Blue (Colour)
-  4. Honey Blue (Colour)
-  5. Lapotra (Finish): an anti-skid granite surface used where grip matters.
-  6. Flaming (Finish): granite whose upper surface is flame-torched.
+  2. Peacock Brown (Colour)
+  3. Royal Blue (Colour)
+  4. Safari Blue (Colour)
+  5. Honey Blue (Colour)
+  6. Lapotra (Finish): an anti-skid granite surface used where grip matters.
+  7. Flaming (Finish): granite whose upper surface is flame-torched.
 - **Physical Unit**: SyNo 882 B2/2/1/2 882/B1/1, Elkathurthy Mandal, Hanamkonda, Telangana 505476, India. (Maps: https://maps.app.goo.gl/ctrEZc4ZJCZcuquVA)
 - **Registered Office**: H.No. 2-8-14/301, Waddepally, Hanamkonda, Telangana, India.
 - **Email**: thelumbiniexports@gmail.com
@@ -103,10 +104,19 @@
 
 ---
 
+## SEO Preparation (In Scope)
+- Technical and on-page SEO foundation: crawler visibility, server-rendered content, verified metadata, Open Graph, Twitter cards, XML sitemap, robots.txt, semantic HTML, and JSON-LD structured data.
+- **Never invent facts to improve SEO**: No fake reviews, ratings, awards, certifications, statistics, prices, capacities, or client names. Optimise the wording and structure of confirmed facts only.
+- **No keyword stuffing**: Write natural, specific, human copy that mentions target terms where they truthfully fit.
+- **Structured data alignment**: Structured data (JSON-LD) must match visible page content exactly without empty fields or invented claims.
+- Canonical host is `https://www.thelumbiniexports.in`. Staging/preview deployments remain `noindex`.
+
+---
+
 ## Out of Scope
-- SEO work (no sitemap, structured data, keyword pages, or analytics).
-- CMS, blog, multiple languages.
-- Basic unique page titles are sufficient; the owner will manage SEO after the build.
+- Ongoing post-launch SEO campaigns (Search Console submissions, off-page link building, backlink acquisition).
+- CMS, blog, multi-language internationalisation.
+
 
 ---
 

@@ -84,6 +84,13 @@ export default function Logo({
         width={738}
         height={338}
         priority={priority || size === "header"}
+        sizes={
+          size === "header"
+            ? "(max-width: 640px) 130px, (max-width: 1024px) 160px, 200px"
+            : size === "footer"
+            ? "(max-width: 640px) 240px, 320px"
+            : "(max-width: 768px) 200px, 360px"
+        }
         className="w-full h-full object-contain pointer-events-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
       />
     </div>

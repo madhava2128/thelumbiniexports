@@ -3,12 +3,16 @@ import Link from "next/link";
 import { Container, Section, Heading, Eyebrow, Button } from "@/components/ui";
 import { StoneCard } from "@/components/collection";
 import { stones } from "@/content/stones";
+import { JsonLd, getCollectionJsonLd, getBreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Natural Granite Collection",
+  title: "Granite Collection | The Lumbini Exports",
   description:
-    "Explore our collection of natural South Indian granite. Cut, polished, and processed to project specifications at our unit in Elkathurthy.",
+    "Indian granite collection: Tan Brown, Peacock Brown, Royal Blue, Safari Blue, Honey Blue, plus Lapotra anti-skid and flamed Flaming granite finishes.",
+  alternates: {
+    canonical: "/collection",
+  },
 };
 
 interface CollectionPageProps {
@@ -32,7 +36,7 @@ export default async function CollectionPage({ searchParams }: CollectionPagePro
     {
       label: "All Granite",
       href: "/collection",
-      active: currentTab === "all" || (!currentTab && true),
+      active: currentTab === "all" || !category,
     },
     {
       label: "Colours",
@@ -48,6 +52,15 @@ export default async function CollectionPage({ searchParams }: CollectionPagePro
 
   return (
     <div className="flex-1">
+      {/* Structured Data: ItemList and BreadcrumbList */}
+      <JsonLd data={getCollectionJsonLd(stones)} />
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Collection", path: "/collection" },
+        ])}
+      />
+
       {/* 1. Page Header Band (Charcoal) */}
       <Section
         background="charcoal"
@@ -56,11 +69,26 @@ export default async function CollectionPage({ searchParams }: CollectionPagePro
       >
         <Container>
           <div className="max-w-3xl space-y-4">
+            {/* Breadcrumb Navigation */}
+            <nav aria-label="Breadcrumb" className="mb-2">
+              <ol className="flex items-center gap-2 text-xs font-sans text-ivory/60">
+                <li>
+                  <Link href="/" className="hover:text-gold transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-ivory/30">/</li>
+                <li className="font-semibold text-ivory" aria-current="page">
+                  Collection
+                </li>
+              </ol>
+            </nav>
+
             <Eyebrow accent="gold" withLine>
               Granite Catalog
             </Eyebrow>
             <Heading variant="display" as="h1" className="text-ivory">
-              Our Collection
+              Granite Collection
             </Heading>
             <p className="type-body text-ivory/80 text-lg sm:text-xl font-normal leading-relaxed">
               Natural South Indian granite varieties, precision cut and polished to project specifications.
@@ -72,6 +100,13 @@ export default async function CollectionPage({ searchParams }: CollectionPagePro
       {/* 2. Stone Catalog & Filter Tabs (Ivory) */}
       <Section background="ivory" spacing="spacious" className="border-b border-stone/20">
         <Container>
+          {/* Introductory paragraph explaining Colour vs Finish stones */}
+          <div className="max-w-3xl mx-auto mb-10 text-center space-y-3">
+            <p className="type-body text-stone-grey-text text-base sm:text-lg leading-relaxed">
+              Our granite catalog is organized into natural <strong className="text-obsidian font-semibold">Colour</strong> selections and specialized architectural <strong className="text-obsidian font-semibold">Finishes</strong>. Colour stones highlight the distinctive mineral crystals and natural pigmentation quarried from South Indian geological formations, available in standard polished or custom textures. Finish varieties undergo specialized mechanical abrasive brushing (Lapotra) or high-temperature flame torching (Flaming) to achieve high-traction, slip-resistant surfaces where grip matters.
+            </p>
+          </div>
+
           {/* Category Filter Tabs */}
           <div className="mb-10 sm:mb-12 flex items-center justify-center">
             <div
@@ -98,11 +133,11 @@ export default async function CollectionPage({ searchParams }: CollectionPagePro
             </div>
           </div>
 
-          {/* Stone Cards Grid: 3 cols desktop, 2 cols tablet, 1 col mobile */}
+          {/* Stone Cards Grid: 4 cols wide desktop (1280px+), 3 cols laptop, 2 cols tablet, 1 col mobile */}
           {filteredStones.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-              {filteredStones.map((stone) => (
-                <StoneCard key={stone.slug} stone={stone} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
+              {filteredStones.map((stone, idx) => (
+                <StoneCard key={stone.slug} stone={stone} priority={idx === 0} />
               ))}
             </div>
           ) : (
@@ -145,7 +180,7 @@ export default async function CollectionPage({ searchParams }: CollectionPagePro
             </p>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button href="/get-quote" variant="primary" size="lg" className="w-full sm:w-auto px-8 py-4">
-                Request a Custom Quote
+                Request a Quote
               </Button>
               <Button href="/infrastructure" variant="goldOutline" size="lg" className="w-full sm:w-auto px-8 py-4">
                 View Infrastructure &amp; Processing

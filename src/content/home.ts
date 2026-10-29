@@ -144,10 +144,10 @@ export const homeContent: HomePageContent = {
   // 4. About Teaser
   aboutTeaser: {
     eyebrow: "About Our Unit",
-    title: "Established Granite Cutting & Polishing in Hanamkonda",
+    title: "Granite Cutting, Polishing & Export in Hanamkonda",
     description: [
-      "The Lumbini Exports was established in 2023 with a focused mission: to supply natural building granite directly from Telangana to domestic builders and international stone importers.",
-      "Our processing unit is located in Elkathurthy Mandal, Hanamkonda District, positioning our operations near prime South Indian granite belts.",
+      "The Lumbini Exports was established in 2023 with a clear focus: to operate as a reliable granite manufacturer, supplier, and exporter of natural Indian granite.",
+      "Our processing unit is located in Elkathurthy Mandal within the Hanamkonda District of Telangana (neighbouring Warangal). We process raw granite blocks sourced across South India into calibrated granite slabs, dimensioned paving tiles, and textured anti-skid surfaces for architectural projects, domestic construction, and international container export.",
     ],
     ctaLabel: "Learn More About Us",
     ctaHref: "/company",
@@ -165,7 +165,7 @@ export const homeContent: HomePageContent = {
         id: "machines",
         title: "Machines",
         oneLiner:
-          "Multi-cutter block sawing and 20-head continuous line polishing machinery for uniform thickness and finish.",
+          "Multi-cutter block sawing and 20-head continuous line polishing machinery for uniform slab thickness and surface finish.",
         href: "/infrastructure#machines",
         imageKey: "infra_multi_cutter",
         stepNumber: "01",
@@ -174,7 +174,7 @@ export const homeContent: HomePageContent = {
         id: "facilities",
         title: "Operations & Facilities",
         oneLiner:
-          "Expansive raw block stockyards, covered finishing bays, and rooftop solar installation at our Elkathurthy unit.",
+          "Expansive raw block stockyards, covered processing bays, inspection areas, and factory rooftop solar installation.",
         href: "/infrastructure#facilities",
         imageKey: "infra_processing_bay",
         stepNumber: "02",
@@ -183,7 +183,7 @@ export const homeContent: HomePageContent = {
         id: "delivery",
         title: "Delivery",
         oneLiner:
-          "Seaworthy wooden crating and container stuffing coordinated for domestic and overseas delivery.",
+          "Seaworthy wooden crating and container stuffing coordinated for domestic transit and international sea freight.",
         href: "/infrastructure#delivery",
         imageKey: "infra_delivery_packaging",
         stepNumber: "03",
@@ -198,7 +198,7 @@ export const homeContent: HomePageContent = {
     description:
       "Whether you require full container loads of gangsaw slabs, custom cut-to-size paving, or rough quarried blocks, our team will provide a transparent direct quotation.",
     primaryCta: {
-      label: "Get a Quote",
+      label: "Request a Quote",
       href: "/get-quote",
     },
   },

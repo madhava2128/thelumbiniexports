@@ -36,8 +36,8 @@ export function HomeFeaturedStones() {
           </div>
         </div>
 
-        {/* Featured Stone Cards: 3x2 grid on desktop, 2 cols tablet, 1 col mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        {/* Featured Stone Cards: 4 cols wide desktop (1280px+), 3 cols laptop, 2 cols tablet, 1 col mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {stones.map((stone) => (
             <StoneCard key={stone.slug} stone={stone} />
           ))}

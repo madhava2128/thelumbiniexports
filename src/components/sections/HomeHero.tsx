@@ -22,7 +22,7 @@ export function HomeHero() {
 
   return (
     <section
-      className="relative min-h-0 sm:min-h-[clamp(560px,82svh,780px)] flex flex-col justify-between overflow-hidden bg-obsidian text-ivory"
+      className="relative min-h-[560px] sm:min-h-[clamp(560px,82svh,780px)] flex flex-col justify-between overflow-hidden bg-obsidian text-ivory"
       aria-labelledby="hero-heading"
     >
       {/* Calm entrance animation and landscape-phone adaptations */}
@@ -121,7 +121,7 @@ export function HomeHero() {
             id="hero-heading"
             className="hero-headline-clamp animate-hero-headline type-hero font-normal text-ivory leading-[1.08] sm:leading-[1.1] tracking-tight max-w-[16ch] sm:max-w-[28ch] lg:max-w-[22ch]"
           >
-            {hero.headline === "Granite cut and polished in Hanamkonda." ? (
+            {hero.headline === "Granite cutting and polishing in Hanamkonda." ? (
               <>
                 Granite cut and polished{" "}
                 <br className="hidden sm:inline" />

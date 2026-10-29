@@ -18,7 +18,7 @@ export function InfrastructureCard({
   const isReversed = index % 2 === 1;
 
   return (
-    <article
+    <figure
       aria-labelledby={`card-heading-${card.id}`}
       className={cn(
         "group flex flex-col rounded-xs bg-ivory-surface border border-stone/20 shadow-xs hover:border-gold/45 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden",
@@ -33,8 +33,8 @@ export function InfrastructureCard({
         />
       </div>
 
-      {/* Content Container */}
-      <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center space-y-3.5">
+      {/* Caption Content Container */}
+      <figcaption className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center space-y-3.5">
         <div className="flex items-center gap-2">
           <span className="type-label text-[11px] text-sage font-semibold uppercase tracking-wider">
             {sectionLabel} &bull; Step {String(index + 1).padStart(2, "0")}
@@ -53,7 +53,7 @@ export function InfrastructureCard({
         <p className="type-body text-stone-grey-text text-sm sm:text-base leading-relaxed">
           {card.description}
         </p>
-      </div>
-    </article>
+      </figcaption>
+    </figure>
   );
 }

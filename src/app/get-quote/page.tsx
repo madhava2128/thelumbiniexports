@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { Container, Section, Heading, Eyebrow } from "@/components/ui";
 import { QuoteForm, QuoteContactCard } from "@/components/quote";
 import { type QuoteFormInput } from "@/lib/quote-schema";
+import { JsonLd, getBreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Request a Quote",
+  title: "Request a Granite Quote | The Lumbini Exports",
   description:
-    "Request direct factory pricing and containerized export quotes for Indian granite. Prompt itemized quotations within 24-48 hours.",
+    "Request direct factory quotations on natural Indian granite slabs, tiles, and cut-to-size project orders from our Hanamkonda processing facility.",
+  alternates: {
+    canonical: "/get-quote",
+  },
 };
 
 interface GetQuotePageProps {
@@ -76,6 +81,14 @@ function QuoteFormFallback() {
 export default function GetQuotePage({ searchParams }: GetQuotePageProps) {
   return (
     <div className="flex-1">
+      {/* Structured Data: BreadcrumbList */}
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Request a Quote", path: "/get-quote" },
+        ])}
+      />
+
       {/* 1. Page Header Band (Charcoal) */}
       <Section
         background="charcoal"
@@ -84,6 +97,21 @@ export default function GetQuotePage({ searchParams }: GetQuotePageProps) {
       >
         <Container>
           <div className="max-w-3xl space-y-4">
+            {/* Breadcrumb Navigation */}
+            <nav aria-label="Breadcrumb" className="mb-2">
+              <ol className="flex items-center gap-2 text-xs font-sans text-ivory/60">
+                <li>
+                  <Link href="/" className="hover:text-gold transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-ivory/30">/</li>
+                <li className="font-semibold text-ivory" aria-current="page">
+                  Request a Quote
+                </li>
+              </ol>
+            </nav>
+
             <Eyebrow accent="gold" withLine>
               Wholesale &amp; Export Inquiries
             </Eyebrow>

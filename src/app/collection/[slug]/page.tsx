@@ -16,6 +16,11 @@ import {
   StoneQuotePanel,
 } from "@/components/collection";
 import { stones, getStoneBySlug } from "@/content/stones";
+import {
+  JsonLd,
+  getStoneProductJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/components/seo/JsonLd";
 
 interface StoneDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -37,9 +42,34 @@ export async function generateMetadata({
     notFound();
   }
 
+  const title = stone.metaTitle;
+  const description = stone.metaDescription;
+
   return {
-    title: `${stone.name} | The Lumbini Exports`,
-    description: stone.shortDescription,
+    title,
+    description,
+    alternates: {
+      canonical: `/collection/${stone.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/collection/${stone.slug}`,
+      images: [
+        {
+          url: `/images/stones/${stone.slug}/main.webp`,
+          width: 1200,
+          height: 800,
+          alt: `${stone.name} granite slab`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`/images/stones/${stone.slug}/main.webp`],
+    },
   };
 }
 
@@ -51,11 +81,21 @@ export default async function StoneDetailPage({ params }: StoneDetailPageProps) 
     notFound();
   }
 
-  // Filter out the current stone to show the remaining stones in the "Other Stones" row
+  // Filter out current stone for "Other Stones" row
   const otherStones = stones.filter((s) => s.slug !== stone.slug);
 
   return (
     <div className="flex-1">
+      {/* Structured data: Product & BreadcrumbList */}
+      <JsonLd data={getStoneProductJsonLd(stone)} />
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Collection", path: "/collection" },
+          { name: stone.name, path: `/collection/${stone.slug}` },
+        ])}
+      />
+
       {/* 1. Main Detail Section on Ivory Stone */}
       <Section background="ivory" spacing="default" className="pt-6 sm:pt-8 pb-16">
         <Container>
@@ -112,13 +152,13 @@ export default async function StoneDetailPage({ params }: StoneDetailPageProps) 
                 </p>
               </div>
 
-              {/* Interactive Image Gallery with Thumbnails & Lightbox */}
+              {/* Image Gallery with Thumbnails in raw HTML */}
               <StoneGallery
                 imageKeys={stone.imageKeys}
                 stoneName={stone.name}
               />
 
-              {/* Full Description */}
+              {/* Full Description & General Uses */}
               <div className="space-y-4 pt-2">
                 <Heading variant="product" as="h2" className="text-obsidian">
                   About {stone.name}
@@ -130,7 +170,7 @@ export default async function StoneDetailPage({ params }: StoneDetailPageProps) 
 
               <Divider variant="solid" className="my-6 border-stone/20" />
 
-              {/* Technical Specifications Table */}
+              {/* Technical Characteristics Table */}
               <div className="space-y-4">
                 <Heading variant="product" as="h2" className="text-obsidian">
                   Technical Characteristics
@@ -151,7 +191,7 @@ export default async function StoneDetailPage({ params }: StoneDetailPageProps) 
                 <ul className="space-y-2 list-disc list-inside leading-relaxed">
                   <li>Direct raw block intake and gang-saw slab calibration in Elkathurthy</li>
                   <li>Custom dimensional cutting to architectural project schedules</li>
-                  <li>Export packaging with protective fumigated wooden crating</li>
+                  <li>Export packaging with protective wooden crating</li>
                 </ul>
               </div>
             </div>
@@ -191,6 +231,7 @@ export default async function StoneDetailPage({ params }: StoneDetailPageProps) 
                   <div className="overflow-hidden bg-obsidian aspect-[3/2]">
                     <SiteImage
                       imageKey={item.imageKeys.main}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                     />
                   </div>
@@ -247,7 +288,7 @@ export default async function StoneDetailPage({ params }: StoneDetailPageProps) 
                 size="lg"
                 className="w-full sm:w-auto px-8 py-4 text-sm font-semibold tracking-wider shadow-lg"
               >
-                Request a Quote for {stone.name}
+                Request a Quote
               </Button>
               <Button href="/collection" variant="goldOutline" size="lg" className="w-full sm:w-auto px-8 py-4">
                 View Granite Collection

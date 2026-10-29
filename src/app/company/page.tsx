@@ -12,10 +12,15 @@ import { companyContent } from "@/content/company";
 import { siteConfig } from "@/content/site";
 import { stones } from "@/content/stones";
 
+import { JsonLd, getBreadcrumbJsonLd } from "@/components/seo/JsonLd";
+
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About The Lumbini Exports | Granite Unit in Hanamkonda",
   description:
-    "The Lumbini Exports, established 2023. Granite cutting and polishing unit in Elkathurthy, Hanamkonda District, Telangana, India.",
+    "Learn about The Lumbini Exports, established in 2023 in Elkathurthy, Hanamkonda, Telangana. Architectural granite cutting, polishing, and export unit.",
+  alternates: {
+    canonical: "/company",
+  },
 };
 
 export default function CompanyPage() {
@@ -39,6 +44,14 @@ export default function CompanyPage() {
 
   return (
     <div className="flex-1">
+      {/* Structured Data: BreadcrumbList */}
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Company", path: "/company" },
+        ])}
+      />
+
       {/* 1. Page Header Band (Charcoal) */}
       <Section
         background="charcoal"
@@ -47,6 +60,21 @@ export default function CompanyPage() {
       >
         <Container>
           <div className="max-w-3xl space-y-4">
+            {/* Breadcrumb Navigation */}
+            <nav aria-label="Breadcrumb" className="mb-2">
+              <ol className="flex items-center gap-2 text-xs font-sans text-ivory/60">
+                <li>
+                  <Link href="/" className="hover:text-gold transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-ivory/30">/</li>
+                <li className="font-semibold text-ivory" aria-current="page">
+                  Company
+                </li>
+              </ol>
+            </nav>
+
             <Eyebrow accent="gold" withLine>
               {header.badge}
             </Eyebrow>
@@ -149,7 +177,7 @@ export default function CompanyPage() {
         </Container>
       </Section>
 
-      {/* 4. Our Stones (6-item granite range) */}
+      {/* 4. Our Stones (7-item granite range) */}
       <Section background="ivory" spacing="default" className="border-b border-stone/20">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
@@ -170,8 +198,8 @@ export default function CompanyPage() {
             </Link>
           </div>
 
-          {/* 3-column / 2-column granite cards grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {/* Responsive granite cards grid: 4 cols wide desktop, 3 cols laptop, 2 cols tablet, 1 col mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {stones.map((stone) => (
               <Link
                 key={stone.slug}

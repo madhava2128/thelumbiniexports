@@ -80,7 +80,7 @@ export interface CompanyPageContent {
 export const companyContent: CompanyPageContent = {
   // 1. Page Header Band
   header: {
-    badge: "About Us",
+    badge: "Company Profile",
     title: "About The Lumbini Exports",
     intro:
       "A dedicated granite cutting and polishing unit based in Elkathurthy, Hanamkonda District, Telangana. Established in 2023.",

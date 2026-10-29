@@ -175,7 +175,7 @@ export function MobileNav({ isOpen, onClose, pathname }: MobileNavProps) {
             size="lg"
             className="w-full text-center shadow-md py-4 text-sm font-semibold tracking-wider"
           >
-            Get a Quote
+            Request a Quote
           </Button>
 
           <div className="pt-2 text-xs text-ivory/70 space-y-1">

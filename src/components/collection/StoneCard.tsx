@@ -5,9 +5,10 @@ import { type StoneItem } from "@/content/stones";
 
 export interface StoneCardProps {
   stone: StoneItem;
+  priority?: boolean;
 }
 
-export function StoneCard({ stone }: StoneCardProps) {
+export function StoneCard({ stone, priority = false }: StoneCardProps) {
   return (
     <Link
       href={`/collection/${stone.slug}`}
@@ -18,6 +19,8 @@ export function StoneCard({ stone }: StoneCardProps) {
         <div className="overflow-hidden bg-obsidian aspect-[3/2]">
           <SiteImage
             imageKey={stone.imageKeys.main}
+            priority={priority}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
             className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
           />
         </div>
