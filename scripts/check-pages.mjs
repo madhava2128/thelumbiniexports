@@ -16,7 +16,7 @@
 const BASE_URL = process.env.TEST_HOST || "http://localhost:3000";
 
 const ROUTES_TO_TEST = [
-  { path: "/", type: "home", minWords: 200, expectedH1: "Granite cut and polished in Hanamkonda." },
+  { path: "/", type: "home", minWords: 200, expectedH1: "Granite cutting and polishing in Hanamkonda." },
   { path: "/company", type: "company", minWords: 350, expectedH1: "About The Lumbini Exports" },
   { path: "/collection", type: "collection", minWords: 200, expectedH1: "Granite Collection" },
   { path: "/collection?category=colour", type: "collection-filter", minWords: 150, expectedCanonical: "https://www.thelumbiniexports.in/collection" },

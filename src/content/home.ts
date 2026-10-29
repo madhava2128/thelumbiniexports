@@ -83,7 +83,7 @@ export interface HomePageContent {
 export const homeContent: HomePageContent = {
   // 1. Hero Section
   hero: {
-    headline: "Granite cut and polished in Hanamkonda.",
+    headline: "Granite cutting and polishing in Hanamkonda.",
     supportingLine:
       "We cut, polish and supply granite to builders, distributors and importers.",
     primaryCta: {

@@ -123,7 +123,7 @@ export function HomeHero() {
           >
             {hero.headline === "Granite cutting and polishing in Hanamkonda." ? (
               <>
-                Granite cut and polished{" "}
+                Granite cutting and polishing{" "}
                 <br className="hidden sm:inline" />
                 in&nbsp;Hanamkonda.
               </>
