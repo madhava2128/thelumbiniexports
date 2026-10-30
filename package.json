@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "node --test scripts/test-credential-verification.mjs",
+    "test:verify": "node --test scripts/test-credential-verification.mjs",
     "check-pages": "node scripts/check-pages.mjs",
     "audit:lighthouse": "node scripts/audit-lighthouse.mjs"
   },

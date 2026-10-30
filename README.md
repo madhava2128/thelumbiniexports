@@ -83,6 +83,7 @@ cp .env.example .env.local
 | `NEXT_PUBLIC_BING_VERIFICATION` | Browser/Client | Optional | Bing Webmaster Tools verification token. When provided, renders `<meta name="msvalidate.01" content="..." />`. |
 | `TURNSTILE_SECRET_KEY` | Server-only | Optional | Cloudflare Turnstile secret key. Bot verification activates automatically if this key is set. |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Browser/Client | Optional | Cloudflare Turnstile site key for client challenge widget. |
+| `CREDENTIALS_STORE_PATH` | Server-only | Optional | Absolute or relative path to authoritative server JSON store for credential verification. Defaults to `data/credentials.json`. |
 
 > **Canonical Host & Domain Redirect Requirement**:
 > The canonical host for the production website is **`https://www.thelumbiniexports.in`**.
@@ -152,7 +153,20 @@ The project is pre-configured for deployment on the [Vercel](https://vercel.com)
 
 ---
 
-## 7. Outstanding Client Items (TODO-CLIENT)
+## 7. Internship Credential Verification (`/verify/[credentialId]`)
+
+Phase 10 introduces unlisted, authoritative credential verification for internships issued by The Lumbini Exports.
+
+- **Route**: `/verify/[credentialId]` (e.g. `/verify/TLE-INT-2026-001`).
+- **Access**: Unlisted, public by direct URL or certificate QR code. Not included in main navigation, footer, or public sitemap.
+- **Robots / Indexing**: Carries `noindex, follow` metadata so search engines do not index verification records.
+- **Authoritative Verification**: Verified live on every page load against the server-side persistent store (`data/credentials.json`).
+- **Document Security**: PDF documents are served via `/api/verify/[credentialId]/document` with strict directory traversal prevention and security headers.
+- **LinkedIn Integration**: Direct pre-filled workflow for adding certified credentials to recipient LinkedIn profiles.
+
+---
+
+## 8. Outstanding Client Items (TODO-CLIENT)
 
 Before final public launch, review [`docs/TODO-CLIENT.md`](docs/TODO-CLIENT.md) for all items requiring client confirmation, including:
 - Official phone and WhatsApp numbers
