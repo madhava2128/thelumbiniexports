@@ -1,5 +1,5 @@
 import React from "react";
-import { FileText, Download, ExternalLink, AlertCircle } from "lucide-react";
+import { Download, ExternalLink, AlertCircle } from "lucide-react";
 import { Heading, Button } from "@/components/ui";
 import { DocumentReference } from "@/lib/credential-types";
 
@@ -68,43 +68,13 @@ export function CertificatePreview({
             </a>
           </div>
 
-          <div className="w-full aspect-[4/3] sm:aspect-[16/10] max-h-[640px] bg-stone/10 relative">
-            <object
-              data={inlineDocUrl}
-              type="application/pdf"
-              className="w-full h-full"
-              aria-label="Completion Certificate Document Viewer"
-            >
-              {/* Fallback for browsers / devices that do not support inline PDF viewing */}
-              <div className="flex flex-col items-center justify-center p-8 text-center h-full space-y-4">
-                <FileText className="w-12 h-12 text-stone/50" aria-hidden="true" />
-                <p className="text-obsidian font-medium">
-                  Your browser does not display PDFs inline.
-                </p>
-                <p className="text-stone-grey-text text-sm max-w-md">
-                  You can open or download the original completion certificate PDF using the links below.
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-                  <Button
-                    href={inlineDocUrl}
-                    isExternal
-                    variant="secondary"
-                    size="md"
-                    aria-label="Open PDF fallback in new tab"
-                  >
-                    Open PDF in New Window
-                  </Button>
-                  <Button
-                    href={downloadDocUrl}
-                    variant="primary"
-                    size="md"
-                    aria-label="Download PDF fallback directly"
-                  >
-                    Download Certificate
-                  </Button>
-                </div>
-              </div>
-            </object>
+          <div className="w-full h-[520px] sm:h-[680px] bg-stone/10 relative">
+            <iframe
+              src={inlineDocUrl}
+              title="Completion Certificate Document Viewer"
+              className="w-full h-full border-0"
+              loading="lazy"
+            />
           </div>
         </div>
       ) : (
