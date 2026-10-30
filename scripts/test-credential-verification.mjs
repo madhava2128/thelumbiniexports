@@ -254,9 +254,10 @@ test("Credential Verification System Tests", async (t) => {
     assert.equal(result.statusMessage, "Unable to verify");
   });
 
-  await t.test("7. Missing certificate handled safely and offer letter configured", async () => {
+  await t.test("7. Certificate and offer letter documents configured", async () => {
     const result = await verifyCredentialLogic("TLE-INT-2026-001", storeRaw);
-    assert.equal(result.credential.certificateDocument, null);
+    assert.ok(result.credential.certificateDocument);
+    assert.equal(result.credential.certificateDocument.filename, "TLE-Certificate-K-Madhava.pdf");
     assert.ok(result.credential.offerLetterDocument);
     assert.equal(result.credential.offerLetterDocument.filename, "TLE-Offer-Letter-K-Madhava.pdf");
   });
