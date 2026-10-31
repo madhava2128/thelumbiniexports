@@ -225,7 +225,8 @@ test("Credential Verification System Tests", async (t) => {
     assert.equal(result.maskedEmail, "d***i@gmail.com");
     assert.ok(result.credential.offerLetterDocument);
     assert.equal(result.credential.offerLetterDocument.filename, "TLE-Offer-Letter-Doli-Abhinava-Sai.pdf");
-    assert.equal(result.credential.certificateDocument, null);
+    assert.ok(result.credential.certificateDocument);
+    assert.equal(result.credential.certificateDocument.filename, "TLE-Certificate-Doli-Abhinava-Sai.pdf");
     assert.equal(result.taskSummary?.totalTasks, 9);
     assert.equal(result.taskSummary?.completedTasks, 9);
     assert.match(result.canonicalVerificationUrl, /\/verify\/TLE-INT-2026-005$/);
