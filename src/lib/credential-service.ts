@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import bundledCredentials from "../../data/credentials.json";
 import {
   type CredentialRecord,
   type VerificationResult,
@@ -90,10 +91,16 @@ export async function checkFileAvailable(relativeOrAbsolutePath?: string | null)
     const fullPath = path.isAbsolute(relativeOrAbsolutePath)
       ? relativeOrAbsolutePath
       : path.join(/*turbopackIgnore: true*/ process.cwd(), relativeOrAbsolutePath);
-    await fs.access(fullPath);
+    await fs.access(/*turbopackIgnore: true*/ fullPath);
     return true;
   } catch {
-    return false;
+    try {
+      const publicPath = path.join(/*turbopackIgnore: true*/ process.cwd(), "public", "docs", path.basename(relativeOrAbsolutePath));
+      await fs.access(/*turbopackIgnore: true*/ publicPath);
+      return true;
+    } catch {
+      return false;
+    }
   }
 }
 
@@ -101,15 +108,19 @@ export async function checkFileAvailable(relativeOrAbsolutePath?: string | null)
  * Read and validate all credential records from the server-side store.
  */
 export async function getAllCredentials(): Promise<CredentialRecord[]> {
-  const storePath = getCredentialsStorePath();
-  const rawData = await fs.readFile(/*turbopackIgnore: true*/ storePath, "utf-8");
-  const parsed = JSON.parse(rawData);
+  try {
+    const storePath = getCredentialsStorePath();
+    const rawData = await fs.readFile(/*turbopackIgnore: true*/ storePath, "utf-8");
+    const parsed = JSON.parse(rawData);
 
-  if (!Array.isArray(parsed)) {
-    throw new Error("Invalid credentials store format: Expected an array.");
+    if (Array.isArray(parsed)) {
+      return parsed.map((item) => credentialRecordSchema.parse(item));
+    }
+  } catch {
+    // Fall back safely to bundled dataset on serverless environments where local file reads might fail
   }
 
-  return parsed.map((item) => credentialRecordSchema.parse(item));
+  return (bundledCredentials as unknown[]).map((item) => credentialRecordSchema.parse(item));
 }
 
 /**
@@ -154,14 +165,20 @@ export async function verifyCredential(
       };
     }
 
-    // Check document availability on disk
-    const certAvailable = record.certificateDocument?.path
-      ? await checkFileAvailable(record.certificateDocument.path)
-      : false;
+    // Check document availability: either verified in store, or confirmed physically on disk
+    const certAvailable = Boolean(
+      record.certificateDocument?.fileAvailable ??
+        (record.certificateDocument?.path
+          ? await checkFileAvailable(record.certificateDocument.path)
+          : false)
+    );
 
-    const offerAvailable = record.offerLetterDocument?.path
-      ? await checkFileAvailable(record.offerLetterDocument.path)
-      : false;
+    const offerAvailable = Boolean(
+      record.offerLetterDocument?.fileAvailable ??
+        (record.offerLetterDocument?.path
+          ? await checkFileAvailable(record.offerLetterDocument.path)
+          : false)
+    );
 
     const updatedRecord: CredentialRecord = {
       ...record,

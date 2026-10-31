@@ -57,15 +57,31 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Secure path resolution to prevent directory traversal
-    const safeDocPath = path.resolve(/*turbopackIgnore: true*/ process.cwd(), docRef.path);
-    if (!safeDocPath.startsWith(process.cwd())) {
+    const primaryPath = path.resolve(/*turbopackIgnore: true*/ process.cwd(), docRef.path);
+    if (!primaryPath.startsWith(process.cwd())) {
       return NextResponse.json(
         { error: "Access denied." },
         { status: 403 }
       );
     }
 
-    if (!fs.existsSync(safeDocPath)) {
+    // Check multiple candidate locations (e.g. data/docs, public/docs)
+    const baseName = path.basename(docRef.path);
+    const candidatePaths = [
+      primaryPath,
+      path.join(/*turbopackIgnore: true*/ process.cwd(), "public", "docs", baseName),
+      path.join(/*turbopackIgnore: true*/ process.cwd(), "data", "docs", baseName),
+    ];
+
+    let foundPath: string | null = null;
+    for (const candPath of candidatePaths) {
+      if (candPath.startsWith(process.cwd()) && fs.existsSync(/*turbopackIgnore: true*/ candPath)) {
+        foundPath = candPath;
+        break;
+      }
+    }
+
+    if (!foundPath) {
       return NextResponse.json(
         {
           error: `Document file not found on server. The ${
@@ -76,7 +92,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const fileBuffer = await fs.promises.readFile(safeDocPath);
+    const fileBuffer = await fs.promises.readFile(/*turbopackIgnore: true*/ foundPath);
     const filename = docRef.filename || `${type}.pdf`;
     const disposition = isDownload ? "attachment" : "inline";
 
@@ -85,8 +101,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `${disposition}; filename="${encodeURIComponent(filename)}"`,
+        "Content-Length": fileBuffer.length.toString(),
+        "Accept-Ranges": "bytes",
         "X-Content-Type-Options": "nosniff",
-        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
       },
     });
   } catch (error) {

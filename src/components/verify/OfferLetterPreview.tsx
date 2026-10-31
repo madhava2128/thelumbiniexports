@@ -73,8 +73,30 @@ export function OfferLetterPreview({
               src={inlineDocUrl}
               title="Internship Offer Letter Document Viewer"
               className="w-full h-full border-0"
-              loading="lazy"
             />
+          </div>
+
+          <div className="bg-obsidian/5 px-4 py-2.5 border-t border-stone/20 flex flex-wrap items-center justify-between gap-2 text-xs text-stone-grey-text">
+            <span>Unable to preview PDF directly on this device?</span>
+            <div className="flex items-center gap-3">
+              <a
+                href={inlineDocUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold-hover hover:underline inline-flex items-center gap-1 font-medium"
+              >
+                <span>Open in new tab</span>
+                <ExternalLink className="w-3 h-3" aria-hidden="true" />
+              </a>
+              <span className="text-stone/40">•</span>
+              <a
+                href={downloadDocUrl}
+                className="text-gold-hover hover:underline inline-flex items-center gap-1 font-medium"
+              >
+                <span>Download PDF</span>
+                <Download className="w-3 h-3" aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
       ) : (
