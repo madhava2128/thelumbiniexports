@@ -214,6 +214,23 @@ test("Credential Verification System Tests", async (t) => {
     assert.match(result.checkedAtFormattedIst, /IST$/);
   });
 
+  await t.test("2b. Authoritative check for DOLI ABHINAVA SAI (TLE-INT-2026-005)", async () => {
+    const result = await verifyCredentialLogic("TLE-INT-2026-005", storeRaw);
+    assert.equal(result.state, "verified");
+    assert.equal(result.statusMessage, "Verified credential");
+    assert.ok(result.credential);
+    assert.equal(result.credential.recipientName, "DOLI ABHINAVA SAI");
+    assert.equal(result.credential.programme, "Data Analyst Intern");
+    assert.equal(result.credential.issuerName, "The Lumbini Exports");
+    assert.equal(result.maskedEmail, "d***i@gmail.com");
+    assert.ok(result.credential.offerLetterDocument);
+    assert.equal(result.credential.offerLetterDocument.filename, "TLE-Offer-Letter-Doli-Abhinava-Sai.pdf");
+    assert.equal(result.credential.certificateDocument, null);
+    assert.equal(result.taskSummary?.totalTasks, 9);
+    assert.equal(result.taskSummary?.completedTasks, 9);
+    assert.match(result.canonicalVerificationUrl, /\/verify\/TLE-INT-2026-005$/);
+  });
+
   await t.test("3. Unknown credential ID produces clear not_found state", async () => {
     const result = await verifyCredentialLogic("UNKNOWN-RECORD-404", storeRaw);
     assert.equal(result.state, "not_found");

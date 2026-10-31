@@ -61,12 +61,13 @@ The credential verification subsystem is fully implemented and tested. Stored au
 2. `TLE-INT-2026-002`: **M Sri Charan Goud** (Digital Marketing Intern, 9 evaluated tasks)
 3. `TLE-INT-2026-003`: **Tenali Vinay** (Business Development Intern, 9 evaluated tasks)
 4. `TLE-INT-2026-004`: **K MOHITH CHOWDARY** (Web Development Intern, 9 evaluated tasks)
+5. `TLE-INT-2026-005`: **DOLI ABHINAVA SAI** (Data Analyst Intern, 9 evaluated tasks)
 
 The following items are pending confirmation before live production certificate generation:
 
 | Item | Status | Current Setup / Placeholder | Action Required from Client / Owner |
 |---|---|---|---|
-| **Unique Credential IDs** | Configured | `TLE-INT-2026-001` through `TLE-INT-2026-004` (in `data/credentials.json`) | Confirm if serial sequence and prefix match official administrative filing. |
+| **Unique Credential IDs** | Configured | `TLE-INT-2026-001` through `TLE-INT-2026-005` (in `data/credentials.json`) | Confirm if serial sequence and prefix match official administrative filing. |
 | **Completion Certificate (PDFs)** | Pending Upload | `certificateDocument: null` for all records | Supply official signed and sealed completion certificate PDFs. Place in `data/documents/` and update references in `data/credentials.json`. |
 | **Offer Letter (PDFs)** | Pending Upload | `offerLetterDocument: null` for all records | Supply official signed appointment/offer letter PDFs. Place in `data/documents/` and update references in `data/credentials.json`. |
 | **Completed Tasks & Evaluations** | Confirmed & Configured | 9 weekly tasks populated per role with 100% evaluated status | Verified across Web Development, Digital Marketing, and Business Development roles. |
